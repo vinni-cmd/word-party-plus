@@ -1,16 +1,16 @@
-import './App.css';
-import { useEffect } from 'react';
-import axios from 'axios';
+import "./App.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
-   useEffect(() => {
+  useEffect(() => {
     axios({
       url: "https://api.datamuse.com/words",
       method: "GET",
       dataResponse: "json",
       params: {
-      format: "json",
-      rel_rhy: "cat"
+        format: "json",
+        rel_rhy: "cat",
       },
     }).then((response) => {
       console.log(response);
