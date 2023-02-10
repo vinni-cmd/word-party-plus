@@ -1,24 +1,15 @@
 import "./App.css";
-import { useEffect } from "react";
-import axios from "axios";
+
+import Form from "./Components/Form";
 
 function App() {
-  useEffect(() => {
-    axios({
-      url: "https://api.datamuse.com/words",
-      method: "GET",
-      dataResponse: "json",
-      params: {
-        format: "json",
-        rel_rhy: "cat",
-      },
-    }).then((response) => {
-      console.log(response);
-    });
-  }, []);
   return (
     <div className="App">
-      <h1>Word Party</h1>
+      <header>
+        <h1>Word Party</h1>
+      </header>
+      <Form />
+      <footer>Made by Kyle, Umesh, and Vincent at Juno College</footer>
     </div>
   );
 }
