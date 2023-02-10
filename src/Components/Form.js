@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Form = () => {
+const Form = ({apiCall}) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
 
@@ -9,48 +9,8 @@ const Form = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    apiCall(currentCategory, searchWord)
 
-    if (currentCategory === "rhy") {
-      axios({
-        url: "https://api.datamuse.com/words",
-        method: "GET",
-        dataResponse: "json",
-        params: {
-          format: "json",
-          rel_rhy: searchWord,
-          max: 20,
-        },
-      })
-        .then((response) => {
-          if (response.data.length === 0) {
-            throw new Error("Please enter a valid word");
-          }
-          console.log(response);
-        })
-        .catch((errorMessage) => {
-          alert(errorMessage);
-        });
-    } else if (currentCategory === "syn") {
-      axios({
-        url: "https://api.datamuse.com/words",
-        method: "GET",
-        dataResponse: "json",
-        params: {
-          format: "json",
-          rel_syn: searchWord,
-          max: 20,
-        },
-      })
-        .then((response) => {
-          if (response.data.length === 0) {
-            throw new Error("Please enter a valid word");
-          }
-          console.log(response);
-        })
-        .catch((errorMessage) => {
-          alert(errorMessage);
-        });
-    }
   };
 
   const handleCategoryChange = (e) => {
@@ -73,8 +33,8 @@ const Form = () => {
         value={searchWord}
       ></input>
       <label>Choose Category</label>
-      <select value={currentCategory} onChange={handleCategoryChange} required>
-        <option disabled>Please Select</option>
+      <select defaultValue="null" onChange={handleCategoryChange} required>
+        <option disabled value="null">Please Select</option>
         <option value="rhy">Rhyme</option>
         <option value="syn">Synonym</option>
       </select>
