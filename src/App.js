@@ -57,10 +57,7 @@ function App() {
         {/* add a <p> and explain what the app does*/}
       </header>
       <Form apiCall={apiCall} />
-
       <Results wordList={wordList} />
-
-
       <footer>
         <p>Made by Kyle, Umesh, and Vincent at Juno College</p>
       </footer>

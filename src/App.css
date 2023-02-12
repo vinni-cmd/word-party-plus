@@ -62,21 +62,18 @@ body {
   flex-direction: column;
 }
 
-.App > * {
-  background-color: var(--secondary-c);
-}
-
 .wrapper {
   max-width: 1000px;
   width: 95%;
   margin: 0 auto;
 }
 
-.App > *:not(:first-child):not(:last-child) {
-  border-radius: var(--border-r);
+.App > * {
+  background-color: var(--secondary-c);
 }
 
-.App > *:not(:first-child) {
+.App > *:not(:first-child):not(:last-child) {
+  border-radius: var(--border-r);
   margin-top: 100px;
 }
 
@@ -92,7 +89,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(3rem, 12vw + 2rem, 6rem);
+  font-size: clamp(3rem, 10vw + 1rem, 7rem);
 }
 
 input,
@@ -103,7 +100,7 @@ button {
   border-radius: var(--border-r);
   padding: 2px 6px;
   scale: 1;
-  transition: border 0.3s ease-in , scale 0.3s ease-in ;
+  transition: border 0.3s ease-in , scale 0.3s ease-in;
 }
 
 input:hover,
@@ -113,11 +110,7 @@ select:focus,
 button:hover,
 button:focus {
   border-color: var(--accent-c);
-}
-
-button:hover,
-button:focus {
-  scale: 0.96;
+  scale: 0.98;
 }
 
 /* Header */
@@ -126,7 +119,7 @@ header {
   justify-content: center;
 }
 
-/* Form*/
+/* Form */
 form {
   padding: var(--section-padding);
 }
@@ -157,6 +150,7 @@ form button {
 /* Results */
 .results {
   padding: var(--section-padding);
+  margin-bottom: 100px;
 }
 
 .results ul {
@@ -176,7 +170,6 @@ footer {
 }
 
 /* Media queries */
-
 @media (max-width: 950px) {
   form {
     display: flex;
