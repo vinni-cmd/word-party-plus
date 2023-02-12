@@ -136,9 +136,16 @@ form .container {
   gap: 1em;
 }
 
+.input-unit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
 input,
 select {
-  margin-left: 1rem;
+  margin-left: auto;
   accent-color: var(--accent-c);
 }
 
