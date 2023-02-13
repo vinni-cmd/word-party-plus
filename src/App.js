@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import axios from "axios";
-
-import Form from "./Components/Form";
-import Results from "./Components/Results";
+import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
+import { Link, Route, Routes } from "react-router-dom";
 
 function App() {
   const [wordList, setWordList] = useState([]);
@@ -54,12 +53,29 @@ function App() {
   return (
     <div className="App">
       <header>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+              <li>
+              <Link to="/savedWords">Saved Words</Link>
+            </li>
+          </ul>
+          </nav>
         <h1>Word Party</h1>
         {/* add a <p> and explain what the app does*/}
       </header>
-      <Form apiCall={apiCall} />
-      <Results wordList={wordList} />
-      <SavedWords />
+      <Routes>
+        <Route path="/" element={ <Home apiCall={apiCall} wordList={wordList} />  }/>
+        
+       
+        <Route path="/savedWords" element={<SavedWords />}/>
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+      </Routes>
+      
+    
+      
       <footer>
         <p>Made by Kyle, Umesh, and Vincent at Juno College</p>
       </footer>
