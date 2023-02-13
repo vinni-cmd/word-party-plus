@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 
-const Form = ({apiCall}) => {
+const Form = ({ apiCall }) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
 
@@ -22,24 +21,29 @@ const Form = ({apiCall}) => {
   };
 
   return (
-    <form>
-      <label htmlFor="searchWord">Word: </label>
-      <input
-        id="searchWord"
-        type="text"
-        placeholder="Enter Word"
-        required
-        onChange={handleSearchWordChange}
-        value={searchWord}
-      ></input>
-      <label>Choose Category</label>
-      <select defaultValue="null" onChange={handleCategoryChange} required>
-        <option disabled value="null">Please Select</option>
-        <option value="rhy">Rhyme</option>
-        <option value="syn">Synonym</option>
-      </select>
-
-      <button onClick={handleClick}>Submit</button>
+    <form className="wrapper">
+      <div class="container">
+        <div class="input-unit">
+          <label htmlFor="searchWord">Word: </label>
+          <input
+            id="searchWord"
+            type="text"
+            placeholder="Enter Word"
+            required
+            onChange={handleSearchWordChange}
+            value={searchWord}
+          ></input>
+        </div>
+        <div class="input-unit">
+          <label>Choose Category: </label>
+          <select defaultValue="null" onChange={handleCategoryChange} required>
+            <option disabled value="null">Please Select</option>
+            <option value="rhy">Rhyme</option>
+            <option value="syn">Synonym</option>
+          </select>
+        </div>
+        <button onClick={handleClick}>Submit</button>
+      </div>
     </form>
   );
 };
