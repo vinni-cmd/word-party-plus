@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Form from "./Components/Form";
 import Results from "./Components/Results";
+import SavedWords from "./Components/SavedWords";
 
 function App() {
   const [wordList, setWordList] = useState([]);
@@ -58,6 +59,7 @@ function App() {
       </header>
       <Form apiCall={apiCall} />
       <Results wordList={wordList} />
+      <SavedWords />
       <footer>
         <p>Made by Kyle, Umesh, and Vincent at Juno College</p>
       </footer>

@@ -6,10 +6,15 @@ const Form = ({ apiCall }) => {
 
   //   useEffect(() => {}, []);
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    apiCall(currentCategory, searchWord)
+    const wordCheck = /[^a-z]/gi;
 
+    if (!wordCheck.test(searchWord)) {
+      apiCall(currentCategory, searchWord);
+    } else {
+      alert("Only valid words with letters are accepted!");
+    }
   };
 
   const handleCategoryChange = (e) => {
@@ -21,9 +26,9 @@ const Form = ({ apiCall }) => {
   };
 
   return (
-    <form className="wrapper">
-      <div class="container">
-        <div class="input-unit">
+    <form onSubmit={handleSubmit} className="wrapper">
+      <div className="container">
+        <div className="input-unit">
           <label htmlFor="searchWord">Word: </label>
           <input
             id="searchWord"
@@ -34,15 +39,17 @@ const Form = ({ apiCall }) => {
             value={searchWord}
           ></input>
         </div>
-        <div class="input-unit">
+        <div className="input-unit">
           <label>Choose Category: </label>
           <select defaultValue="null" onChange={handleCategoryChange} required>
-            <option disabled value="null">Please Select</option>
+            <option disabled value="null">
+              Please Select
+            </option>
             <option value="rhy">Rhyme</option>
             <option value="syn">Synonym</option>
           </select>
         </div>
-        <button onClick={handleClick}>Submit</button>
+        <button onSubmit={handleSubmit}>Submit</button>
       </div>
     </form>
   );
