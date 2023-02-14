@@ -7,7 +7,13 @@ const Home = ({ apiCall, wordList, isLoading }) => {
     <>
       <Form apiCall={apiCall} />
       <Loader isLoading={isLoading} />
-      <Results wordList={wordList} />
+      
+      {
+        (wordList.length === 0) ? null :
+        <Results wordList={wordList} />
+      
+      
+      }
     </>
   );
 };

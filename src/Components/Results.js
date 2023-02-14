@@ -1,9 +1,15 @@
 import firebase from './../modules/firebase';
 import { getDatabase, push, ref, get } from 'firebase/database';
 import { IoMdAddCircle } from 'react-icons/io'
+import { useEffect, useRef } from 'react';
+
 function Results({ wordList }) {
   console.log("apiResponse", wordList);
-
+  const scrollToRef = useRef(null)
+  useEffect(() => {
+    scrollToRef.current.scrollIntoView({behavior:"smooth"})
+  }, [wordList])
+  
   const handleClick = (e) => {
     const wordToAdd = wordList[e.currentTarget.id].word;
     // create a variable that holds our db info
@@ -31,8 +37,8 @@ function Results({ wordList }) {
   }
 
   return (
-    (wordList.length === 0) ? null : (
-      <section className='results wrapper'>
+    (
+      <section className='results wrapper' ref={scrollToRef}>
         <h2>Results</h2>
         <ul>
           {wordList.map((wordReturn) => {
