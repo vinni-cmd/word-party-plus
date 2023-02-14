@@ -6,10 +6,13 @@ import { AiFillFileWord, AiFillHome } from 'react-icons/ai'
 // components
 import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
+import NotFound from "./Components/NotFound";
 
 function App() {
   const [wordList, setWordList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   function apiCall(currentCategory, searchWord) {
+    setIsLoading(true)
     if (currentCategory === "rhy") {
       axios({
         url: "https://api.datamuse.com/words",
@@ -22,10 +25,12 @@ function App() {
         },
       })
         .then((response) => {
+          setIsLoading(false)
           if (response.data.length === 0) {
             throw new Error("Please enter a valid word");
           }
           setWordList(response.data);
+         
         })
         .catch((errorMessage) => {
           alert(errorMessage);
@@ -42,10 +47,12 @@ function App() {
         },
       })
         .then((response) => {
+          setIsLoading(false)
           if (response.data.length === 0) {
             throw new Error("Please enter a valid word");
           }
           setWordList(response.data);
+          
         })
         .catch((errorMessage) => {
           alert(errorMessage);
@@ -66,16 +73,18 @@ function App() {
           </ul>
         </nav>
         <h1>Word Party</h1>
+        
         {/* add a <p> and explain what the app does*/}
       </header>
       <Routes>
-        <Route path="/" element={<Home apiCall={apiCall} wordList={wordList} />} />
+        <Route path="/" element={<Home apiCall={apiCall} wordList={wordList} isLoading={isLoading}/>} />
 
 
         <Route path="/savedWords" element={<SavedWords />} />
-        {/* <Route path="*" element={<ErrorPage />} /> */}
+        
+      <Route path="*" element={<NotFound />} />
+      
       </Routes>
-
 
 
       <footer>

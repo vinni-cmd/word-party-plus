@@ -249,6 +249,29 @@ footer {
   }
 }
 
+.loader svg{
+  font-size: 2rem;
+  width: 5rem;
+
+}
+
+.loading{
+  color: red;
+  font-size: 10rem;
+  animation: animate 3s infinite linear;
+}
+
+
+@keyframes animate {
+  from{
+    rotate: 0deg;
+  }
+  to{
+    rotate: 360deg;
+  }
+}
+
+
 @media (max-width: 724px) {
   nav a {
     font-size: 2.6rem;
