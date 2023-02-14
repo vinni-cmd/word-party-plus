@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import { Link, Route, Routes } from "react-router-dom";
+import { AiFillFileWord, AiFillHome } from 'react-icons/ai'
+// components
 import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
-import { Link, Route, Routes } from "react-router-dom";
 
 function App() {
   const [wordList, setWordList] = useState([]);
@@ -56,26 +58,26 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" aria-label="Navigate to Word Party Home page" title="Home"><AiFillHome /></Link>
             </li>
-              <li>
-              <Link to="/savedWords">Saved Words</Link>
+            <li>
+              <Link to="/savedWords" aria-label="Navigate to Word Party Saved Words page" title="Saved Words"><AiFillFileWord /></Link>
             </li>
           </ul>
-          </nav>
+        </nav>
         <h1>Word Party</h1>
         {/* add a <p> and explain what the app does*/}
       </header>
       <Routes>
-        <Route path="/" element={ <Home apiCall={apiCall} wordList={wordList} />  }/>
-        
-       
-        <Route path="/savedWords" element={<SavedWords />}/>
+        <Route path="/" element={<Home apiCall={apiCall} wordList={wordList} />} />
+
+
+        <Route path="/savedWords" element={<SavedWords />} />
         {/* <Route path="*" element={<ErrorPage />} /> */}
       </Routes>
-      
-    
-      
+
+
+
       <footer>
         <p>Made by Kyle, Umesh, and Vincent at Juno College</p>
       </footer>

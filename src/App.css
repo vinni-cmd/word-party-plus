@@ -22,7 +22,8 @@ html { box-sizing: border-box;}
 input,
 select,
 option,
-button {
+button,
+a {
   font: inherit;
   cursor: pointer;
   outline: none;
@@ -45,7 +46,7 @@ html {
 }
 
 body {
-  font-size: clamp(1.6rem, 2vw + 1rem, 2rem);
+  font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);
   font-family: 'Lato', sans-serif;
   color: var(--primary-c);
   background: no-repeat
@@ -85,7 +86,8 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(5rem, 12vw + 2rem, 15rem);
+  font-size: clamp(4rem, 9vw + 2rem, 15rem);
+  padding-right: 3rem;
 }
 
 h2 {
@@ -120,6 +122,41 @@ header {
   margin-bottom: 100px;
 }
 
+/*Navigation */
+nav {
+  position: fixed;
+  top: 10px;
+  right: 5px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+nav li,
+nav a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  font-size: 4rem;
+  color: var(--primary-c);
+  background-color: transparent;
+  padding: 2px 6px;
+  scale: 1;
+  transition: color 0.3s ease-in, scale 0.3s ease-in;
+} 
+
+nav a:hover,
+nav a:focus {
+  color: var(--accent-c);
+  scale: 1.2;
+}
+
 /* Form */
 form {
   padding: var(--section-padding);
@@ -149,15 +186,41 @@ form button {
 }
 
 /* Results */
-.results {
+.results,
+.saved-words {
   padding: var(--section-padding);
   margin-bottom: 100px;
 }
 
-.results ul {
+.results ul,
+.saved-words ul {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+}
+
+.results li,
+.saved-words li {
+  display: flex;
+  align-items: baseline;
+}
+
+.results button,
+.saved-words button {
+  color: var(--primary-c);
+  border: none;
+  scale: 1;
+  transition: all 0.3s ease-in;
+  padding: 0.2em;
+  background-color: transparent;
+}
+
+.results button:hover,
+.results button:hover,
+.saved-words button:hover,
+.saved-words button:hover {
+  color: var(--accent-c);
+  scale: 1.2;
 }
 
 /* Footer */
@@ -183,5 +246,11 @@ footer {
   }
   form button {
     margin-inline: 0;
+  }
+}
+
+@media (max-width: 724px) {
+  nav a {
+    font-size: 2.6rem;
   }
 }

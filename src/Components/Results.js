@@ -1,6 +1,6 @@
 import firebase from './../modules/firebase';
 import { getDatabase, push, ref } from 'firebase/database';
-
+import { IoMdAddCircle } from 'react-icons/io'
 function Results({ wordList }) {
   console.log("apiResponse", wordList);
 
@@ -25,7 +25,8 @@ function Results({ wordList }) {
             return (
               <li key={wordList.indexOf(wordReturn)}>
                 <p>{wordReturn.word}</p>
-                <button onClick={handleClick} id={wordList.indexOf(wordReturn)}>Save word</button></li>)
+                <button onClick={handleClick} id={wordList.indexOf(wordReturn)} aria-label="Add word to Saved Words" title="Save word"><IoMdAddCircle /></button>
+              </li>)
           })}
         </ul>
       </section>
