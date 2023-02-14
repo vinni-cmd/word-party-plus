@@ -11,52 +11,38 @@ import NotFound from "./Components/NotFound";
 function App() {
   const [wordList, setWordList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   function apiCall(currentCategory, searchWord) {
     setIsLoading(true);
-    if (currentCategory === "rhy") {
-      axios({
-        url: "https://api.datamuse.com/words",
-        method: "GET",
-        dataResponse: "json",
-        params: {
-          format: "json",
-          rel_rhy: searchWord,
-          max: 20,
-        },
+    const buildCustomCategory = (currentCategory) => {
+      return `rel_${currentCategory}`;
+    };
+    const customParam = buildCustomCategory(currentCategory);
+
+    axios({
+      url: "https://api.datamuse.com/words",
+      method: "GET",
+      dataResponse: "json",
+      params: {
+        format: "json",
+        [customParam]: searchWord,
+        max: 20,
+      },
+    })
+      .then((response) => {
+        setIsLoading(false);
+        if (response.data.length === 0) {
+          throw new Error(
+            "No results found! Please try another category or word!"
+          );
+        }
+        setWordList(response.data);
       })
-        .then((response) => {
-          setIsLoading(false);
-          if (response.data.length === 0) {
-            throw new Error("Please enter a valid word");
-          }
-          setWordList(response.data);
-        })
-        .catch((errorMessage) => {
-          alert(errorMessage);
-        });
-    } else if (currentCategory === "syn") {
-      axios({
-        url: "https://api.datamuse.com/words",
-        method: "GET",
-        dataResponse: "json",
-        params: {
-          format: "json",
-          rel_syn: searchWord,
-          max: 20,
-        },
-      })
-        .then((response) => {
-          setIsLoading(false);
-          if (response.data.length === 0) {
-            throw new Error("Please enter a valid word");
-          }
-          setWordList(response.data);
-        })
-        .catch((errorMessage) => {
-          alert(errorMessage);
-        });
-    }
+      .catch((errorMessage) => {
+        alert(errorMessage);
+      });
   }
+
   return (
     <div className="App">
       <header>

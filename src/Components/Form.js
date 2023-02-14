@@ -49,11 +49,32 @@ const Form = ({ apiCall }) => {
             <option disabled value="">
               Please Select
             </option>
+            <option value="jjb" required>
+              Adjectives
+            </option>
+            <option value="ant" required>
+              Antonyms
+            </option>
+            <option value="cns" required>
+              Consonant Match
+            </option>
+            <option value="hom" required>
+              Homophones
+            </option>
+            <option value="nry" required>
+              Near Rhymes
+            </option>
+            <option value="jja" required>
+              Nouns
+            </option>
             <option value="rhy" required>
-              Rhyme
+              Rhymes
             </option>
             <option value="syn" required>
-              Synonym
+              Synonyms
+            </option>
+            <option value="trg" required>
+              Triggers
             </option>
           </select>
         </div>

@@ -1,20 +1,15 @@
-import Form from "./Form"
-import Results from "./Results"
-import Loader from "./Loader"
+import Form from "./Form";
+import Results from "./Results";
+import Loader from "./Loader";
 
-
-const Home = ({
-    apiCall, wordList, isLoading
-}) => {
+const Home = ({ apiCall, wordList, isLoading }) => {
   return (
     <>
-    
-    <Form apiCall={apiCall} /> 
-    <Loader isLoading={isLoading}/>  
-    <Results wordList={wordList} /> 
-    
+      <Form apiCall={apiCall} />
+      <Loader isLoading={isLoading} />
+      <Results wordList={wordList} />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
