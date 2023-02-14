@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { Link, Route, Routes } from "react-router-dom";
-import { AiFillFileWord, AiFillHome } from 'react-icons/ai'
+import { AiFillFileWord, AiFillHome } from "react-icons/ai";
 // components
 import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
@@ -12,7 +12,7 @@ function App() {
   const [wordList, setWordList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   function apiCall(currentCategory, searchWord) {
-    setIsLoading(true)
+    setIsLoading(true);
     if (currentCategory === "rhy") {
       axios({
         url: "https://api.datamuse.com/words",
@@ -25,12 +25,11 @@ function App() {
         },
       })
         .then((response) => {
-          setIsLoading(false)
+          setIsLoading(false);
           if (response.data.length === 0) {
             throw new Error("Please enter a valid word");
           }
           setWordList(response.data);
-         
         })
         .catch((errorMessage) => {
           alert(errorMessage);
@@ -47,12 +46,11 @@ function App() {
         },
       })
         .then((response) => {
-          setIsLoading(false)
+          setIsLoading(false);
           if (response.data.length === 0) {
             throw new Error("Please enter a valid word");
           }
           setWordList(response.data);
-          
         })
         .catch((errorMessage) => {
           alert(errorMessage);
@@ -65,27 +63,41 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/" aria-label="Navigate to Word Party Home page" title="Home"><AiFillHome /></Link>
+              <Link
+                to="/"
+                aria-label="Navigate to Word Party Home page"
+                title="Home"
+              >
+                <AiFillHome />
+              </Link>
             </li>
             <li>
-              <Link to="/savedWords" aria-label="Navigate to Word Party Saved Words page" title="Saved Words"><AiFillFileWord /></Link>
+              <Link
+                to="/savedWords"
+                aria-label="Navigate to Word Party Saved Words page"
+                title="Saved Words"
+              >
+                <AiFillFileWord />
+              </Link>
             </li>
           </ul>
         </nav>
         <h1>Word Party</h1>
-        
+
         {/* add a <p> and explain what the app does*/}
       </header>
       <Routes>
-        <Route path="/" element={<Home apiCall={apiCall} wordList={wordList} isLoading={isLoading}/>} />
-
+        <Route
+          path="/"
+          element={
+            <Home apiCall={apiCall} wordList={wordList} isLoading={isLoading} />
+          }
+        />
 
         <Route path="/savedWords" element={<SavedWords />} />
-        
-      <Route path="*" element={<NotFound />} />
-      
-      </Routes>
 
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       <footer>
         <p>Made by Kyle, Umesh, and Vincent at Juno College</p>

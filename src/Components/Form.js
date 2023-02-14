@@ -41,12 +41,20 @@ const Form = ({ apiCall }) => {
         </div>
         <div className="input-unit">
           <label>Choose Category: </label>
-          <select defaultValue="null" onChange={handleCategoryChange} required>
-            <option disabled value="null">
+          <select
+            value={currentCategory}
+            onChange={handleCategoryChange}
+            required
+          >
+            <option disabled value="">
               Please Select
             </option>
-            <option value="rhy">Rhyme</option>
-            <option value="syn">Synonym</option>
+            <option value="rhy" required>
+              Rhyme
+            </option>
+            <option value="syn" required>
+              Synonym
+            </option>
           </select>
         </div>
         <button onSubmit={handleSubmit}>Submit</button>

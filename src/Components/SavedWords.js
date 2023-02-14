@@ -1,7 +1,7 @@
 import firebase from "../modules/firebase";
 import { getDatabase, onValue, remove, ref } from "firebase/database";
 import { useEffect, useState } from "react";
-import { IoMdRemoveCircle } from 'react-icons/io'
+import { IoMdRemoveCircle } from "react-icons/io";
 
 const SavedWords = () => {
   const [savedWords, setSavedWords] = useState([]);
@@ -46,7 +46,8 @@ const SavedWords = () => {
                 onClick={() => {
                   handleRemoveWord(word.wordId);
                 }}
-                aria-label="Remove word from Saved Words" title="Remove word"
+                aria-label="Remove word from Saved Words"
+                title="Remove word"
               >
                 <IoMdRemoveCircle />
               </button>
