@@ -1,19 +1,33 @@
 import firebase from './../modules/firebase';
-import { getDatabase, push, ref } from 'firebase/database';
+import { getDatabase, push, ref, get } from 'firebase/database';
 import { IoMdAddCircle } from 'react-icons/io'
 function Results({ wordList }) {
   console.log("apiResponse", wordList);
 
   const handleClick = (e) => {
-    const wordToAdd = wordList[e.target.id].word;
+    const wordToAdd = wordList[e.currentTarget.id].word;
     // create a variable that holds our db info
     const database = getDatabase(firebase);
     // create a variable that makes a reference to our database
     const dbRef = ref(database);
-    // BEFORE WE PUSH TO FIREBASE LETS CHECK TO SEE IF THE WORD ALREADY EXISTS IN FB
-    //  use the get() method to see what's in our db
-    //  check if the returned ?object? includes our wordToAdd
-    push(dbRef, wordToAdd);
+
+    get(dbRef).then((snapshot) => {
+      const wordDataBase = snapshot.val();
+      let containsWord = false;
+      for (let wordEntry in wordDataBase) {
+        if (wordToAdd !== wordDataBase[wordEntry]) {
+          continue;
+        } else {
+          containsWord = true;
+        }
+      }
+      if (containsWord === false) {
+        push(dbRef, wordToAdd);
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+
   }
 
   return (
