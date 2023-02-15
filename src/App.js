@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 import { Link, Route, Routes } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
-import throwAlert from './modules/alerts'
+import throwAlert from "./modules/alerts";
 // components
 import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
@@ -87,7 +87,21 @@ function App() {
       </Routes>
 
       <footer>
-        <p>Made by Kyle, Umesh, and Vincent at Juno College</p>
+        <p>
+          Made by{" "}
+          <a href="http://www.kylemoore.ca" target="_blank" rel="noreferrer">
+            Kyle
+          </a>
+          ,{" "}
+          <a href="http://umeshcodes.com/" target="_blank" rel="noreferrer">
+            Umesh
+          </a>
+          , and{" "}
+          <a href="https://vincentyoung.dev/" target="_blank" rel="noreferrer">
+            Vincent
+          </a>{" "}
+          at Juno College
+        </p>
       </footer>
     </div>
   );

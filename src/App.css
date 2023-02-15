@@ -54,6 +54,7 @@ body {
               url(./assets/patrick-tomasso-Oaqk7qqNh_c-unsplash.webp)
               var(--primary-c);
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .App {
@@ -75,7 +76,7 @@ body {
 
 .App > *:not(:first-child):not(:last-child) {
   border-radius: var(--border-r);
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 h1,
@@ -97,7 +98,8 @@ h2 {
 input,
 select,
 button,
-.alert-button {
+.alert-button,
+.errorPageLinks a {
   border: 2px solid var(--primary-c);
   background-color: var(--secondary-c);
   border-radius: var(--border-r);
@@ -113,7 +115,9 @@ select:focus,
 button:hover,
 button:focus,
 .alert-button:hover,
-.alert-button:focus {
+.alert-button:focus,
+.errorPageLinks a:hover,
+.errorPageLinks a:focus {
   border-color: var(--accent-c);
   scale: 0.98;
 }
@@ -189,10 +193,15 @@ form button {
 }
 
 /* Loader */
-.loader svg{
-  font-size: 2rem;
-  width: 5rem;
-  
+.loader {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader img{
+  width: 10rem;
 }
 
 .loading{
@@ -235,6 +244,12 @@ form button {
 .saved-words button {
   color: var(--primary-c);
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  align-self: center;
   scale: 1;
   transition: color 0.3s ease-in, scale 0.3s ease-in;
   padding: 0.2em;
@@ -249,6 +264,38 @@ form button {
   scale: 1.2;
 }
 
+/* Error Page */
+
+.errorPage {
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.errorLogo {
+  width: 25rem;  
+}
+
+.errorPage h2 {
+  margin: 0 auto;
+  font-size: 5rem;
+}
+
+.errorPageLinks {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.errorPageLinks a {
+  text-decoration: none;
+  color: black;
+}
+
 /* Footer */
 footer {
   font-size: clamp(1.3rem, 2vw + 0.5rem, 2rem);
@@ -259,6 +306,15 @@ footer {
   margin-top: auto;
 }
 
+footer a {
+  color: #23395B;
+  transition: 0.3s all ease-in;
+}
+
+footer a:hover,
+footer a:focus {
+  color: var(--accent-c);
+}
 
 /* Alerts */
 .swal2-popup.swal2-modal {
