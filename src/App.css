@@ -340,7 +340,7 @@ footer a:focus {
 }
 
 /* Media queries */
-@media (max-width: 950px) {
+@media (max-width: 965px) {
   form {
     display: flex;
     align-items: center;
