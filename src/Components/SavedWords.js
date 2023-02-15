@@ -29,8 +29,6 @@ const SavedWords = () => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `${wordId}`);
 
-    console.log(wordId);
-
     remove(dbRef);
   };
 
