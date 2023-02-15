@@ -1,4 +1,5 @@
 import { useState } from "react";
+import throwAlert from "../modules/alerts";
 
 const Form = ({ apiCall }) => {
   const [searchWord, setSearchWord] = useState("");
@@ -13,7 +14,7 @@ const Form = ({ apiCall }) => {
     if (!wordCheck.test(searchWord)) {
       apiCall(currentCategory, searchWord);
     } else {
-      alert("Only valid words with letters are accepted!");
+      throwAlert("Only valid words with letters are accepted!");
     }
   };
 

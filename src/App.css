@@ -96,7 +96,8 @@ h2 {
 
 input,
 select,
-button {
+button,
+.alert-button {
   border: 2px solid var(--primary-c);
   background-color: var(--secondary-c);
   border-radius: var(--border-r);
@@ -110,7 +111,9 @@ input:focus,
 select:hover,
 select:focus,
 button:hover,
-button:focus {
+button:focus,
+.alert-button:hover,
+.alert-button:focus {
   border-color: var(--accent-c);
   scale: 0.98;
 }
@@ -185,6 +188,7 @@ form button {
   margin-left: auto;
 }
 
+/* Loader */
 .loader svg{
   font-size: 2rem;
   width: 5rem;
@@ -253,6 +257,30 @@ footer {
   justify-content: center;
   /* stick footer to bottom of page */
   margin-top: auto;
+}
+
+
+/* Alerts */
+.swal2-popup.swal2-modal {
+  background-color: var(--secondary-c);
+  border: 2px solid var(--primary-c);
+}
+
+.swal2-icon.swal2-error.alert-icon {
+  border: 2px solid var(--primary-c);
+}
+
+.swal2-icon.alert-icon .swal2-x-mark > span {
+  background-color: var(--error-c);
+}
+
+.swal2-title.alert-title {
+  font-size: 3rem;
+}
+
+.swal2-modal .swal2-html-container,
+.alert-button {
+  font-size: 1.6rem;
 }
 
 /* Media queries */

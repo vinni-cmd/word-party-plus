@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import { Link, Route, Routes } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
+import throwAlert from './modules/alerts'
 // components
 import Home from "./Components/Home";
 import SavedWords from "./Components/SavedWords";
@@ -39,7 +40,7 @@ function App() {
         setWordList(response.data);
       })
       .catch((errorMessage) => {
-        alert(errorMessage);
+        throwAlert(errorMessage.message);
       });
   }
 
