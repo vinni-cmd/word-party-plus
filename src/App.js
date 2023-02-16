@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+// components
+import Home from "./Components/Home";
+import SavedWords from "./Components/SavedWords";
+import NotFound from "./Components/NotFound";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
-function App() {
+
+const App = () => {
+  const [wordList, setWordList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Header/>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home setIsLoading={setIsLoading} setWordList={setWordList} wordList={wordList} isLoading={isLoading} />
+          }
+        />
+        <Route path="/savedWords" element={<SavedWords />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    <Footer />
     </div>
   );
 }
