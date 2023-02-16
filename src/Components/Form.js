@@ -1,18 +1,16 @@
 import { useState } from "react";
 import throwAlert from "../modules/alerts";
+import apiCall from "../modules/api";
 
-const Form = ({ apiCall }) => {
+const Form = ({setIsLoading, setWordList}) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
-
-  //   useEffect(() => {}, []);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const wordCheck = /[^a-z]/gi;
-
     if (!wordCheck.test(searchWord)) {
-      apiCall(currentCategory, searchWord);
+      apiCall(currentCategory, searchWord, setIsLoading, setWordList);
     } else {
       throwAlert("Only valid words with letters are accepted!");
     }
@@ -38,7 +36,7 @@ const Form = ({ apiCall }) => {
             required
             onChange={handleSearchWordChange}
             value={searchWord}
-          ></input>
+          />
         </div>
         <div className="input-unit">
           <label>Choose Category: </label>

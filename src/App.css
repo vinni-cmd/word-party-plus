@@ -89,6 +89,7 @@ h4 {
 h1 {
   font-size: clamp(4rem, 9vw + 2rem, 15rem);
   padding-right: 3rem;
+  margin-bottom: 2rem;
 }
 
 h2 {
@@ -127,6 +128,8 @@ header {
   display: flex;
   justify-content: center;
   margin-bottom: 100px;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*Navigation */

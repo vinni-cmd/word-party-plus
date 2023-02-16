@@ -5,16 +5,14 @@ import { IoMdRemoveCircle } from "react-icons/io";
 
 const SavedWords = () => {
   const [savedWords, setSavedWords] = useState([]);
+  
   useEffect(() => {
     const database = getDatabase(firebase);
-
     const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
       const data = response.val();
-
       const savedWordArray = [];
-
       for (const wordId in data) {
         savedWordArray.push({
           wordId,
@@ -28,7 +26,6 @@ const SavedWords = () => {
   const handleRemoveWord = (wordId) => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `${wordId}`);
-
     remove(dbRef);
   };
 

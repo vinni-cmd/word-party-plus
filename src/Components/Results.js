@@ -4,7 +4,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import { useEffect, useRef } from "react";
 import throwAlert from "../modules/alerts";
 
-function Results({ wordList }) {
+const Results = ({ wordList }) => {
   const scrollToRef = useRef(null);
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
@@ -12,9 +12,7 @@ function Results({ wordList }) {
 
   const handleClick = (e) => {
     const wordToAdd = wordList[e.currentTarget.id].word;
-    // create a variable that holds our db info
     const database = getDatabase(firebase);
-    // create a variable that makes a reference to our database
     const dbRef = ref(database);
 
     get(dbRef)

@@ -1,8 +1,7 @@
 import errorLogo from "../assets/1140-error-outline.gif";
-
 import { Link } from "react-router-dom";
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className="errorPage wrapper">
       <img className="errorLogo" src={errorLogo} alt="error logo" />
@@ -15,3 +14,5 @@ export default function NotFound() {
     </div>
   );
 }
+
+export default NotFound

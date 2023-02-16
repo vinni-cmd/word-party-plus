@@ -10,7 +10,7 @@ const alert = Swal.mixin({
   buttonsStyling: false
 })
 
-function throwAlert(message) {
+const throwAlert = (message) => {
   alert.fire({
     icon: 'error',
     title: 'Something went wrong!',
