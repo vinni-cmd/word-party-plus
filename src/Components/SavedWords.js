@@ -34,7 +34,7 @@ const SavedWords = ({ setWordList }) => {
 
   return (
     <section className="saved-words wrapper">
-      <h2>SavedWords</h2>
+      <h2>Saved Words</h2>
       <ul>
         {savedWords.map((word) => {
           return (

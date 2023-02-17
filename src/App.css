@@ -38,6 +38,15 @@ a {
   cursor: pointer;
   outline: none;
 }
+/* see if it improves */
+option:first-child {
+  font: inherit;
+  line-height: 1.6;
+}
+
+a {
+  text-underline-offset: 0.5rem;
+}
 
 button:focus-visible {
   outline-color: transparent;
@@ -60,10 +69,8 @@ body {
   font-family: 'Lato', sans-serif;
   color: var(--primary-c);
   background: no-repeat
-              /* center */
               url(./assets/patrick-tomasso-Oaqk7qqNh_c-unsplash.webp)
               var(--primary-c);
-  /* background-size: cover; */
   background-attachment: fixed;
 }
 
