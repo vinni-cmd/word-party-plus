@@ -63,7 +63,7 @@ body {
               /* center */
               url(./assets/patrick-tomasso-Oaqk7qqNh_c-unsplash.webp)
               var(--primary-c);
-  background-size: cover;
+  /* background-size: cover; */
   background-attachment: fixed;
 }
 
