@@ -3,15 +3,16 @@ import { getDatabase, push, ref, get } from "firebase/database";
 import { IoMdAddCircle } from "react-icons/io";
 import { useEffect, useRef } from "react";
 import throwAlert from "../modules/alerts";
+import uuid from 'react-uuid';
 
-const Results = ({ wordList }) => {
+const Results = ({ wordList, setSWIconAnimation }) => {
   const scrollToRef = useRef(null);
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
   }, [wordList]);
 
   const handleClick = (e) => {
-    const wordToAdd = wordList[e.currentTarget.id].word;
+    const wordToAdd = e.currentTarget.dataset.value;
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
@@ -33,6 +34,12 @@ const Results = ({ wordList }) => {
       .catch((error) => {
         throwAlert(error.message);
       });
+
+    setSWIconAnimation('animate');
+
+    setTimeout(() => {
+      setSWIconAnimation('');
+    }, 700)
   };
 
   return (
@@ -40,14 +47,15 @@ const Results = ({ wordList }) => {
       <h2>Results</h2>
       <ul>
         {wordList.map((wordReturn) => {
+          const uid = uuid();
           return (
-            <li key={wordList.indexOf(wordReturn)}>
+            <li key={uid}>
               <p>{wordReturn.word}</p>
               <button
                 onClick={handleClick}
-                id={wordList.indexOf(wordReturn)}
                 aria-label="Add word to Saved Words"
                 title="Save word"
+                data-value={wordReturn.word}
               >
                 <IoMdAddCircle />
               </button>

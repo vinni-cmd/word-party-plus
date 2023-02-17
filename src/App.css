@@ -173,6 +173,11 @@ nav a:focus {
   scale: 1.2;
 }
 
+.animate {
+  animation: pulse 0.3s 2 ease-out;
+  color: var(--accent-c);
+}
+
 /* Form */
 form {
   padding: var(--section-padding);
@@ -218,16 +223,6 @@ form button {
   font-size: 10rem;
   animation: animate 3s infinite linear;
 }
-
-@keyframes animate {
-  from{
-    rotate: 0deg;
-  }
-  to{
-    rotate: 360deg;
-  }
-}
-
 
 /* Results */
 .results,
@@ -367,5 +362,28 @@ footer a:focus {
 @media (max-width: 724px) {
   nav a {
     font-size: 2.6rem;
+  }
+}
+
+/* animations */
+
+@keyframes animate {
+  from{
+    rotate: 0deg;
+  }
+  to{
+    rotate: 360deg;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.8;
+  }
+  0% {
+    scale: 1;
   }
 }
