@@ -8,6 +8,7 @@ const Form = ({ setIsLoading, setWordList }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setWordList([]);
     const wordCheck = /[^a-z]/gi;
     if (!wordCheck.test(searchWord.trim())) {
       apiCall(currentCategory, searchWord.trim(), setIsLoading, setWordList);
