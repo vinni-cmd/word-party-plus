@@ -32,7 +32,12 @@ const Header = ({ SWIconAnimation }) => {
         </ul>
       </nav>
       <h1>Word Party</h1>
-      <p>Enter a word and select a category to expand your vocabulary</p>
+      <p>Step 1: Enter a word and select a category to expand your vocabulary</p>
+      <p>Step 2: Add words or remove them from your <Link
+        to="/savedWords"
+        aria-label="Navigate to Word Party Saved Words page"
+        title="Saved Words"
+      >Saved Words</Link> list</p>
     </header>
   )
 }

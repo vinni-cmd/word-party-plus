@@ -7,6 +7,7 @@ import uuid from 'react-uuid';
 
 const Results = ({ wordList, setSWIconAnimation }) => {
   const scrollToRef = useRef(null);
+
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
   }, [wordList]);
@@ -39,7 +40,7 @@ const Results = ({ wordList, setSWIconAnimation }) => {
 
     setTimeout(() => {
       setSWIconAnimation('');
-    }, 700)
+    }, 600)
   };
 
   return (
