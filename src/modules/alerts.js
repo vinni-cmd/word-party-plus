@@ -8,14 +8,14 @@ const alert = Swal.mixin({
     text: 'alert-text'
   },
   buttonsStyling: false
-})
+});
 
 const throwAlert = (message) => {
   alert.fire({
     icon: 'error',
     title: 'Something went wrong!',
     text: message,
-  })
+  });
 }
 
 export default throwAlert;

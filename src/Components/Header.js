@@ -42,4 +42,4 @@ const Header = ({ SWIconAnimation }) => {
   )
 }
 
-export default Header
+export default Header;

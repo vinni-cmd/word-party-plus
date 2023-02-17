@@ -40,7 +40,7 @@ const Results = ({ wordList, setSWIconAnimation }) => {
 
     setTimeout(() => {
       setSWIconAnimation('');
-    }, 600)
+    }, 600);
   };
 
   return (
