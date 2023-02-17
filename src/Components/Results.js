@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import throwAlert from "../modules/alerts";
 import uuid from 'react-uuid';
 
-const Results = ({ wordList, setSWIconAnimation }) => {
+const Results = ({ wordList, setWordAddClassName }) => {
   const scrollToRef = useRef(null);
 
   useEffect(() => {
@@ -36,10 +36,10 @@ const Results = ({ wordList, setSWIconAnimation }) => {
         throwAlert(error.message);
       });
 
-    setSWIconAnimation('animate');
+    setWordAddClassName('animate');
 
     setTimeout(() => {
-      setSWIconAnimation('');
+      setWordAddClassName('');
     }, 600);
   };
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
 import { useRef } from "react";
 
-const Header = ({ SWIconAnimation }) => {
+const Header = ({ WordAddClassName }) => {
   const scrollToRef = useRef(null);
 
   return (
@@ -24,7 +24,7 @@ const Header = ({ SWIconAnimation }) => {
               to="/savedWords"
               aria-label="Navigate to Word Party Saved Words page"
               title="Saved Words"
-              className={SWIconAnimation}
+              className={WordAddClassName}
             >
               <AiFillFileWord />
             </Link>
@@ -33,7 +33,7 @@ const Header = ({ SWIconAnimation }) => {
       </nav>
       <h1>Word Party</h1>
       <p>Step 1: Enter a word and select a category to expand your vocabulary</p>
-      <p>Step 2: Add words or remove them from your <Link
+      <p>Step 2: Add or remove words from your <Link
         to="/savedWords"
         aria-label="Navigate to Word Party Saved Words page"
         title="Saved Words"

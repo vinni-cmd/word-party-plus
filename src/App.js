@@ -12,16 +12,16 @@ import Footer from "./Components/Footer";
 const App = () => {
   const [wordList, setWordList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [SWIconAnimation, setSWIconAnimation] = useState('');
+  const [WordAddClassName, setWordAddClassName] = useState('');
 
   return (
     <div className="App">
-      <Header SWIconAnimation={SWIconAnimation} />
+      <Header WordAddClassName={WordAddClassName} />
       <Routes>
         <Route
           path="/"
           element={
-            <Home setIsLoading={setIsLoading} setWordList={setWordList} wordList={wordList} isLoading={isLoading} setSWIconAnimation={setSWIconAnimation} />
+            <Home setIsLoading={setIsLoading} setWordList={setWordList} wordList={wordList} isLoading={isLoading} setWordAddClassName={setWordAddClassName} />
           }
         />
         <Route path="/savedWords" element={<SavedWords setWordList={setWordList} />} />

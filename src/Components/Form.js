@@ -27,7 +27,7 @@ const Form = ({ setIsLoading, setWordList }) => {
 
   return (
     <form onSubmit={handleSubmit} className="wrapper">
-      <div className="container">
+      <div className="inputs-container">
         <div className="input-unit">
           <label htmlFor="searchWord">Word: </label>
           <input
