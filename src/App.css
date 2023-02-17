@@ -27,7 +27,7 @@ img {
 
 input,
 select,
-option,
+option:not(:first-child),
 button,
 a {
   color: inherit;
@@ -172,7 +172,7 @@ nav {
 nav ul {
   display: flex;
   flex-direction: column;
-  gap: 0.8em;
+  gap: 1rem;
 }
 
 nav li,
@@ -209,7 +209,7 @@ form {
 
 form .inputs-container {
   display: flex;
-  gap: 1em;
+  gap: 3rem;
 }
 
 label {
@@ -225,6 +225,7 @@ label {
 
 input,
 select {
+  width: 20ch;
   margin-left: auto;
   accent-color: var(--accent-c);
 }
