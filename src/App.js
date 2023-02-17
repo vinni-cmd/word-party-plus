@@ -17,6 +17,7 @@ const App = () => {
   return (
     <div className="App">
       <Header WordAddClassName={WordAddClassName} />
+      {/* routes for home, saved words and incorrect url */}
       <Routes>
         <Route
           path="/"

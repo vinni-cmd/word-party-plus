@@ -6,6 +6,7 @@ const Form = ({ setIsLoading, setWordList }) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
 
+  // handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     setWordList([]);
