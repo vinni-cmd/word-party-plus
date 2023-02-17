@@ -6,8 +6,8 @@
   --error-c: #da2222;
   --border-r: 6px;
   --heading-ff: 'Josefin Sans', sans-serif;
-  --section-padding: 2em;
-  --body-fs: clamp(1.7rem, 1.5vw + 1rem, 2rem);
+  --section-padding: 2em 1em;
+  --body-fs: clamp(1.7rem, 1.5vw + 1rem, 2.1rem);
   --section-heading-fs: clamp(3rem, 6vw + 1rem, 7rem);
   --focus-transition: all 0.3s ease-in;
 }
@@ -164,6 +164,7 @@ header {
 header p {
   line-height: 1.6;
   max-width: 80%;
+  margin: 1rem;
 }
 
 header a {
@@ -236,6 +237,10 @@ select {
   accent-color: var(--accent-c);
 }
 
+input {
+  cursor: text;
+}
+
 input::placeholder{
   opacity: 1;
 }
@@ -256,7 +261,6 @@ form button {
 }
 
 .loading{
-  font-size: 10rem;
   animation: animate 3s infinite linear;
 }
 
