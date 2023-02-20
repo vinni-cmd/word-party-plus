@@ -4,7 +4,7 @@ import throwAlert from "./alerts";
 const apiCall = (
   currentCategory,
   searchWord,
-  setIsLoading,
+  setApiIsLoading,
   setWordResultList
 ) => {
   const buildCustomCategory = (currentCategory) => {
@@ -14,7 +14,7 @@ const apiCall = (
   const customParam = buildCustomCategory(currentCategory);
 
   // animate the word party logo during api call
-  setIsLoading(true);
+  setApiIsLoading(true);
 
   axios({
     url: "https://api.datamuse.com/words",
@@ -28,7 +28,7 @@ const apiCall = (
     },
   })
     .then((response) => {
-      setIsLoading(false);
+      setApiIsLoading(false);
       if (!response.data.length) {
         throw new Error(
           "No results found! Please try another category or word!"

@@ -4,7 +4,7 @@ import { useState } from "react";
 import throwAlert from "../modules/alerts";
 import apiCall from "../modules/api";
 
-const Form = ({ setIsLoading, setWordResultList }) => {
+const Form = ({ setApiIsLoading, setWordResultList }) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
 
@@ -19,7 +19,7 @@ const Form = ({ setIsLoading, setWordResultList }) => {
       apiCall(
         currentCategory,
         searchWord.trim(),
-        setIsLoading,
+        setApiIsLoading,
         // setWordResultList to mount results on page
         setWordResultList
       );

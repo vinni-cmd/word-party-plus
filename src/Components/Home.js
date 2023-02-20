@@ -5,15 +5,18 @@ import Results from "./Results";
 
 const Home = ({
   wordResultList,
-  isLoading,
-  setIsLoading,
+  apiIsLoading,
+  setApiIsLoading,
   setWordResultList,
   setSavedWordIconToggleClassName,
 }) => {
   return (
     <>
-      <Form setWordResultList={setWordResultList} setIsLoading={setIsLoading} />
-      <Loader isLoading={isLoading} />
+      <Form
+        setWordResultList={setWordResultList}
+        setApiIsLoading={setApiIsLoading}
+      />
+      <Loader apiIsLoading={apiIsLoading} />
       {wordResultList.length === 0 ? null : (
         <Results
           wordResultList={wordResultList}

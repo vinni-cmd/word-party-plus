@@ -14,7 +14,7 @@ const App = () => {
   // wordResultList is populated with searched word results from api
   const [wordResultList, setWordResultList] = useState([]);
   // while api call is happening word party logo spins
-  const [isLoading, setIsLoading] = useState(false);
+  const [apiIsLoading, setApiIsLoading] = useState(false);
   // state for adding/removing animation for adding/removing saved words
   const [savedWordIconToggleClassName, setSavedWordIconToggleClassName] =
     useState("");
@@ -28,10 +28,10 @@ const App = () => {
           element={
             // Includes form and results components
             <Home
-              setIsLoading={setIsLoading}
+              setApiIsLoading={setApiIsLoading}
               setWordResultList={setWordResultList}
               wordResultList={wordResultList}
-              isLoading={isLoading}
+              apiIsLoading={apiIsLoading}
               setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
             />
           }
