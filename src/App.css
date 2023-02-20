@@ -6,7 +6,10 @@
   --error-c: #da2222;
   --border-r: 6px;
   --heading-ff: 'Josefin Sans', sans-serif;
-  --section-padding: 2em;
+  --section-padding: 2em 1em;
+  --body-fs: clamp(1.7rem, 1.5vw + 1rem, 2.1rem);
+  --section-heading-fs: clamp(3rem, 6vw + 1rem, 7rem);
+  --focus-transition: all 0.3s ease-in;
 }
 
 /* Setup */
@@ -27,12 +30,22 @@ img {
 
 input,
 select,
-option,
+option:not(:first-child),
 button,
 a {
+  color: inherit;
   font: inherit;
   cursor: pointer;
   outline: none;
+}
+/* see if it improves */
+option:first-child {
+  font: inherit;
+  line-height: 1.6;
+}
+
+a {
+  text-underline-offset: 0.5rem;
 }
 
 button:focus-visible {
@@ -52,19 +65,16 @@ html {
 }
 
 body {
-  font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);
+  font-size: var(--body-fs);
   font-family: 'Lato', sans-serif;
   color: var(--primary-c);
   background: no-repeat
-              center
               url(./assets/patrick-tomasso-Oaqk7qqNh_c-unsplash.webp)
               var(--primary-c);
-  background-size: cover;
   background-attachment: fixed;
 }
 
 .App {
-  /* The below rules and footer rule enables sticky footer */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -87,8 +97,7 @@ body {
 
 h1,
 h2,
-h3,
-h4 {
+footer {
   font-family: var(--heading-ff);
 }
 
@@ -99,20 +108,20 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(3rem, 10vw + 1rem, 7rem);
+  font-size: var(--section-heading-fs);
 }
 
 input,
 select,
 button,
 .alert-button,
-.errorPageLinks a {
+.not-found-links a {
   border: 2px solid var(--primary-c);
   background-color: var(--secondary-c);
   border-radius: var(--border-r);
-  padding: 2px 6px;
+  padding: 0.4em 0.5em;
   scale: 1;
-  transition: border 0.3s ease-in , scale 0.3s ease-in;
+  transition: var(--focus-transition);
 }
 
 input:hover,
@@ -120,51 +129,74 @@ input:focus,
 select:hover,
 select:focus,
 button:hover,
-button:focus,
+button:focus-visible,
 .alert-button:hover,
 .alert-button:focus,
-.errorPageLinks a:hover,
-.errorPageLinks a:focus {
+.not-found-links a:hover,
+.not-found-links a:focus {
   border-color: var(--accent-c);
   scale: 0.98;
+}
+
+footer a,
+header a {
+  color: var(--primary-c);
+  transition: var(--focus-transition);
+}
+
+footer a:hover,
+footer a:focus,
+header a:hover,
+header a:focus {
+  color: var(--accent-c);
 }
 
 /* Header */
 header {
   display: flex;
-  justify-content: center;
-  margin-bottom: 100px;
-  flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
+  padding-bottom: 30px;
+  flex-direction: column;
+  text-align: center;
+}
+
+header p {
+  line-height: 1.6;
+  max-width: 80%;
+  margin: 1rem;
+}
+
+header a {
+  font-family: var(--heading-ff);
 }
 
 /*Navigation */
 nav {
   position: fixed;
-  top: 10px;
-  right: 5px;
+  z-index: 10;
+  top: 3px;
+  right: 3px;
 }
 
 nav ul {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1rem;
 }
 
 nav li,
 nav a {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 nav a {
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw + 1rem, 5rem);
   color: var(--primary-c);
   background-color: transparent;
   padding: 2px 6px;
   scale: 1;
-  transition: color 0.3s ease-in, scale 0.3s ease-in;
+  transition: var(--focus-transition);
 } 
 
 nav a:hover,
@@ -173,27 +205,44 @@ nav a:focus {
   scale: 1.2;
 }
 
+.animate {
+  animation: pulse 0.3s 2 ease-out;
+  color: var(--accent-c);
+}
+
 /* Form */
 form {
   padding: var(--section-padding);
 }
 
-form .container {
+form .inputs-container {
   display: flex;
-  gap: 1em;
+  gap: 3rem;
+}
+
+label {
+  font-weight: bold;
 }
 
 .input-unit {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
 
 input,
 select {
+  width: 20ch;
   margin-left: auto;
   accent-color: var(--accent-c);
+}
+
+input {
+  cursor: text;
+}
+
+input::placeholder{
+  opacity: 1;
 }
 
 form button {
@@ -204,9 +253,7 @@ form button {
 /* Loader */
 .loader {
   background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-inline: auto;
 }
 
 .loader img{
@@ -214,20 +261,8 @@ form button {
 }
 
 .loading{
-  color: red;
-  font-size: 10rem;
   animation: animate 3s infinite linear;
 }
-
-@keyframes animate {
-  from{
-    rotate: 0deg;
-  }
-  to{
-    rotate: 360deg;
-  }
-}
-
 
 /* Results */
 .results,
@@ -257,12 +292,12 @@ form button {
   align-items: center;
   justify-content: center;
   width: 3rem;
-  height: 3rem;
+  height: auto;
   align-self: center;
   scale: 1;
-  transition: color 0.3s ease-in, scale 0.3s ease-in;
   padding: 0.2em;
   background-color: transparent;
+  transition: var(--focus-transition);
 }
 
 .results button:hover,
@@ -273,65 +308,51 @@ form button {
   scale: 1.2;
 }
 
-/* Error Page */
-
-.errorPage {
-  margin: 0 auto;
+/* Page not found */
+.not-found {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
-.errorLogo {
+.not-found-logo {
   width: 25rem;  
 }
 
-.errorPage h2 {
+.not-found h2 {
   margin: 0 auto;
-  font-size: 5rem;
+  font-size: var(--section-heading-fs);
+  text-align: center;
 }
 
-.errorPageLinks {
-  display: flex;
-  justify-content: space-between;
-  gap: 5rem;
+.not-found-links li,
+.not-found-links a {
+  display: inline-block;
+  width: 20ch;
 }
 
-.errorPageLinks a {
+.not-found-links li {
+  margin: 1rem;
+}
+
+.not-found-links a {  
   text-decoration: none;
-  color: black;
+  text-align: center;
 }
 
 /* Footer */
 footer {
   font-size: clamp(1.3rem, 2vw + 0.5rem, 2rem);
-  font-family: var(--heading-ff);
   display: flex;
   justify-content: center;
-  /* stick footer to bottom of page */
   margin-top: auto;
 }
 
-footer a {
-  color: #23395B;
-  transition: 0.3s all ease-in;
-}
-
-footer a:hover,
-footer a:focus {
-  color: var(--accent-c);
-}
-
 /* Alerts */
-.swal2-popup.swal2-modal {
-  background-color: var(--secondary-c);
-  border: 2px solid var(--primary-c);
-}
-
+.swal2-popup.swal2-modal,
 .swal2-icon.swal2-error.alert-icon {
+  background-color: var(--secondary-c);
   border: 2px solid var(--primary-c);
 }
 
@@ -340,32 +361,50 @@ footer a:focus {
 }
 
 .swal2-title.alert-title {
+  color: var(--primary-c);
   font-size: 3rem;
 }
 
 .swal2-modal .swal2-html-container,
 .alert-button {
-  font-size: 1.6rem;
+  color: var(--primary-c);
+  font-size: var(--body-fs);
 }
 
 /* Media queries */
 @media (max-width: 965px) {
-  form {
+  form,
+  .not-found-links {
     display: flex;
-    align-items: center;
     justify-content: center;
   }
-  form .container{
+  form .inputs-container,
+  .not-found-links{
     flex-direction: column;
-    align-items: stretch;
   }
   form button {
-    margin-inline: 0;
+    width: 100%;
   }
 }
 
-@media (max-width: 724px) {
-  nav a {
-    font-size: 2.6rem;
+/* Animations */
+@keyframes animate {
+  from{
+    rotate: 0deg;
+  }
+  to{
+    rotate: 360deg;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.8;
+  }
+  0% {
+    scale: 1;
   }
 }
