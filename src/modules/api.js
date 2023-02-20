@@ -1,14 +1,19 @@
 import axios from "axios";
 import throwAlert from "./alerts";
 
-const apiCall = (currentCategory, searchWord, setIsLoading, setWordList) => {
-
+const apiCall = (
+  currentCategory,
+  searchWord,
+  setIsLoading,
+  setWordResultList
+) => {
   const buildCustomCategory = (currentCategory) => {
     return `rel_${currentCategory}`;
-  }
+  };
 
   const customParam = buildCustomCategory(currentCategory);
 
+  // animate the word party logo during api call
   setIsLoading(true);
 
   axios({
@@ -17,6 +22,7 @@ const apiCall = (currentCategory, searchWord, setIsLoading, setWordList) => {
     dataResponse: "json",
     params: {
       format: "json",
+      // customParam to dynamically create key for users input
       [customParam]: searchWord,
       max: 20,
     },
@@ -28,11 +34,11 @@ const apiCall = (currentCategory, searchWord, setIsLoading, setWordList) => {
           "No results found! Please try another category or word!"
         );
       }
-      setWordList(response.data);
+      setWordResultList(response.data);
     })
     .catch((errorMessage) => {
       throwAlert(errorMessage.message);
     });
-}
+};
 
 export default apiCall;

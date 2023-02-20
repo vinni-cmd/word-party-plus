@@ -1,18 +1,28 @@
+// modules
 import { useState } from "react";
+// local imports
 import throwAlert from "../modules/alerts";
 import apiCall from "../modules/api";
 
-const Form = ({ setIsLoading, setWordList }) => {
+const Form = ({ setIsLoading, setWordResultList }) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
 
   // handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setWordList([]);
+    // setWordResultList to reset words from previous search
+    setWordResultList([]);
+    //  wordCheck to make sure user inputs a word using only letters
     const wordCheck = /[^a-z]/gi;
     if (!wordCheck.test(searchWord.trim())) {
-      apiCall(currentCategory, searchWord.trim(), setIsLoading, setWordList);
+      apiCall(
+        currentCategory,
+        searchWord.trim(),
+        setIsLoading,
+        // setWordResultList to mount results on page
+        setWordResultList
+      );
     } else {
       throwAlert("Only valid words with letters are accepted!");
     }
@@ -47,6 +57,7 @@ const Form = ({ setIsLoading, setWordList }) => {
             onChange={handleCategoryChange}
             required
           >
+            {/* datamuse api category options */}
             <option disabled value="">
               Please Select
             </option>

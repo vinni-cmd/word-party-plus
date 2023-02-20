@@ -1,10 +1,16 @@
-import errorLogo from "../assets/1140-error-outline.gif";
+// modules
 import { Link } from "react-router-dom";
+// local imports
+import errorLogo from "../assets/1140-error-outline.gif";
 
 const NotFound = () => {
   return (
     <div className="not-found wrapper">
-      <img className="not-found-logo" src={errorLogo} alt="logo for page not found" />
+      <img
+        className="not-found-logo"
+        src={errorLogo}
+        alt="logo for page not found"
+      />
       <h2>Oops! You seem to be lost.</h2>
       <p>Here are some helpful links:</p>
       <ul className="not-found-links">
@@ -17,6 +23,6 @@ const NotFound = () => {
       </ul>
     </div>
   );
-}
+};
 
 export default NotFound;

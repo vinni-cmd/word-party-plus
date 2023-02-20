@@ -1,15 +1,20 @@
-import firebase from "../modules/firebase";
+// modules
 import { getDatabase, onValue, remove, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { IoMdRemoveCircle } from "react-icons/io";
+// local imports
+import firebase from "../modules/firebase";
 
-const SavedWords = ({ setWordList, setWordAddClassName }) => {
+const SavedWords = ({ setWordResultList, setSavedWordIconToggleClassName }) => {
+  // variable used to store words from firebase database
   const [savedWords, setSavedWords] = useState([]);
 
+  // fetches the database saved words by unique id for each word
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
+    // listens for changes in database
     onValue(dbRef, (response) => {
       const data = response.val();
       const savedWordArray = [];
@@ -22,19 +27,20 @@ const SavedWords = ({ setWordList, setWordAddClassName }) => {
       setSavedWords(savedWordArray);
     });
     return () => {
-      setWordList([]);
+      // when component unmounts clear the results component
+      setWordResultList([]);
     };
-  }, [setWordList]);
+  }, [setWordResultList]);
 
   const handleRemoveWord = (wordId) => {
     const database = getDatabase(firebase);
     const dbRef = ref(database, `${wordId}`);
     remove(dbRef);
 
-    setWordAddClassName("animateRemove");
+    setSavedWordIconToggleClassName("animateRemove");
 
     setTimeout(() => {
-      setWordAddClassName("");
+      setSavedWordIconToggleClassName("");
     }, 600);
   };
 

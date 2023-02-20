@@ -1,22 +1,27 @@
-import firebase from "./../modules/firebase";
+// modules
 import { getDatabase, push, ref, get } from "firebase/database";
 import { IoMdAddCircle } from "react-icons/io";
 import { useEffect, useRef } from "react";
+import uuid from "react-uuid";
+// local imports
+import firebase from "./../modules/firebase";
 import throwAlert from "../modules/alerts";
-import uuid from 'react-uuid';
 
-const Results = ({ wordList, setWordAddClassName }) => {
+const Results = ({ wordResultList, setSavedWordIconToggleClassName }) => {
+  // variable to implement scroll effect when results component is mounted
   const scrollToRef = useRef(null);
 
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [wordList]);
+  }, [wordResultList]);
 
   const handleClick = (e) => {
+    // adding words to saved list database
     const wordToAdd = e.currentTarget.dataset.value;
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
+    // get to check whether or not word is already in database and add if its not
     get(dbRef)
       .then((snapshot) => {
         const wordDataBase = snapshot.val();
@@ -36,10 +41,11 @@ const Results = ({ wordList, setWordAddClassName }) => {
         throwAlert(error.message);
       });
 
-    setWordAddClassName('animate');
+    setSavedWordIconToggleClassName("animate");
 
+    // enables animation to happen multiple times
     setTimeout(() => {
-      setWordAddClassName('');
+      setSavedWordIconToggleClassName("");
     }, 600);
   };
 
@@ -47,7 +53,7 @@ const Results = ({ wordList, setWordAddClassName }) => {
     <section className="results wrapper" ref={scrollToRef}>
       <h2>Results</h2>
       <ul>
-        {wordList.map((wordReturn) => {
+        {wordResultList.map((wordReturn) => {
           const uid = uuid();
           return (
             <li key={uid}>
@@ -66,6 +72,6 @@ const Results = ({ wordList, setWordAddClassName }) => {
       </ul>
     </section>
   );
-}
+};
 
 export default Results;

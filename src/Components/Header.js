@@ -1,8 +1,10 @@
+// modules
 import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
 import { useRef } from "react";
 
-const Header = ({ WordAddClassName }) => {
+const Header = ({ savedWordIconToggleClassName }) => {
+  // causes page to scroll to top of home page
   const scrollToRef = useRef(null);
 
   return (
@@ -14,7 +16,9 @@ const Header = ({ WordAddClassName }) => {
               to="/"
               aria-label="Navigate to Word Party Home page"
               title="Home"
-              onClick={() => scrollToRef.current.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                scrollToRef.current.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <AiFillHome />
             </Link>
@@ -24,7 +28,7 @@ const Header = ({ WordAddClassName }) => {
               to="/savedWords"
               aria-label="Navigate to Word Party Saved Words page"
               title="Saved Words"
-              className={WordAddClassName}
+              className={savedWordIconToggleClassName}
             >
               <AiFillFileWord />
             </Link>
@@ -32,14 +36,22 @@ const Header = ({ WordAddClassName }) => {
         </ul>
       </nav>
       <h1>Word Party</h1>
-      <p>Step 1: Enter a word and select a category to expand your vocabulary</p>
-      <p>Step 2: Add or remove words from your <Link
-        to="/savedWords"
-        aria-label="Navigate to Word Party Saved Words page"
-        title="Saved Words"
-      >Saved Words</Link> list</p>
+      <p>
+        Step 1: Enter a word and select a category to expand your vocabulary
+      </p>
+      <p>
+        Step 2: Add or remove words from your{" "}
+        <Link
+          to="/savedWords"
+          aria-label="Navigate to Word Party Saved Words page"
+          title="Saved Words"
+        >
+          Saved Words
+        </Link>{" "}
+        list
+      </p>
     </header>
-  )
-}
+  );
+};
 
 export default Header;

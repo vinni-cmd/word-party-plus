@@ -1,16 +1,25 @@
+// components
 import Form from "./Form";
-import Results from "./Results";
 import Loader from "./Loader";
+import Results from "./Results";
 
-const Home = ({ wordList, isLoading, setIsLoading, setWordList, setWordAddClassName }) => {
+const Home = ({
+  wordResultList,
+  isLoading,
+  setIsLoading,
+  setWordResultList,
+  setSavedWordIconToggleClassName,
+}) => {
   return (
     <>
-      <Form setWordList={setWordList} setIsLoading={setIsLoading} />
+      <Form setWordResultList={setWordResultList} setIsLoading={setIsLoading} />
       <Loader isLoading={isLoading} />
-      {
-        (wordList.length === 0) ? null :
-          <Results wordList={wordList} setWordAddClassName={setWordAddClassName} />
-      }
+      {wordResultList.length === 0 ? null : (
+        <Results
+          wordResultList={wordResultList}
+          setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+        />
+      )}
     </>
   );
 };
