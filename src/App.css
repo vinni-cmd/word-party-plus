@@ -210,6 +210,11 @@ nav a:focus {
   color: var(--accent-c);
 }
 
+.animateRemove {
+  animation: pulse 0.3s 2 ease-out;
+  color: var(--error-c);
+}
+
 /* Form */
 form {
   padding: var(--section-padding);
@@ -407,4 +412,10 @@ footer {
   0% {
     scale: 1;
   }
+}
+
+
+
+select {
+  height: 4rem;
 }

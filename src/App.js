@@ -8,11 +8,10 @@ import NotFound from "./Components/NotFound";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
-
 const App = () => {
   const [wordList, setWordList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [WordAddClassName, setWordAddClassName] = useState('');
+  const [WordAddClassName, setWordAddClassName] = useState("");
 
   return (
     <div className="App">
@@ -22,15 +21,29 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Home setIsLoading={setIsLoading} setWordList={setWordList} wordList={wordList} isLoading={isLoading} setWordAddClassName={setWordAddClassName} />
+            <Home
+              setIsLoading={setIsLoading}
+              setWordList={setWordList}
+              wordList={wordList}
+              isLoading={isLoading}
+              setWordAddClassName={setWordAddClassName}
+            />
           }
         />
-        <Route path="/savedWords" element={<SavedWords setWordList={setWordList} />} />
+        <Route
+          path="/savedWords"
+          element={
+            <SavedWords
+              setWordList={setWordList}
+              setWordAddClassName={setWordAddClassName}
+            />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
