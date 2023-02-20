@@ -1,16 +1,28 @@
+// modules
 import { useState } from "react";
+// local imports
 import throwAlert from "../modules/alerts";
 import apiCall from "../modules/api";
 
-const Form = ({setIsLoading, setWordList}) => {
+const Form = ({ setApiIsLoading, setWordResultList }) => {
   const [searchWord, setSearchWord] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
-  
+
+  // handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // setWordResultList to reset words from previous search
+    setWordResultList([]);
+    //  wordCheck to make sure user inputs a word using only letters
     const wordCheck = /[^a-z]/gi;
-    if (!wordCheck.test(searchWord)) {
-      apiCall(currentCategory, searchWord, setIsLoading, setWordList);
+    if (!wordCheck.test(searchWord.trim())) {
+      apiCall(
+        currentCategory,
+        searchWord.trim(),
+        setApiIsLoading,
+        // setWordResultList to mount results on page
+        setWordResultList
+      );
     } else {
       throwAlert("Only valid words with letters are accepted!");
     }
@@ -26,7 +38,7 @@ const Form = ({setIsLoading, setWordList}) => {
 
   return (
     <form onSubmit={handleSubmit} className="wrapper">
-      <div className="container">
+      <div className="inputs-container">
         <div className="input-unit">
           <label htmlFor="searchWord">Word: </label>
           <input
@@ -39,12 +51,13 @@ const Form = ({setIsLoading, setWordList}) => {
           />
         </div>
         <div className="input-unit">
-          <label>Choose Category: </label>
+          <label>Category: </label>
           <select
             value={currentCategory}
             onChange={handleCategoryChange}
             required
           >
+            {/* datamuse api category options */}
             <option disabled value="">
               Please Select
             </option>

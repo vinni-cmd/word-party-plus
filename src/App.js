@@ -1,34 +1,56 @@
+// modules
 import { useState } from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 // components
-import Home from "./Components/Home";
-import SavedWords from "./Components/SavedWords";
-import NotFound from "./Components/NotFound";
-import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-
+import Header from "./Components/Header";
+import Home from "./Components/Home";
+import NotFound from "./Components/NotFound";
+import SavedWords from "./Components/SavedWords";
+// local imports
+import "./App.css";
 
 const App = () => {
-  const [wordList, setWordList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // wordResultList is populated with searched word results from api
+  const [wordResultList, setWordResultList] = useState([]);
+  // while api call is happening word party logo spins
+  const [apiIsLoading, setApiIsLoading] = useState(false);
+  // state for adding/removing animation for adding/removing saved words
+  const [savedWordIconToggleClassName, setSavedWordIconToggleClassName] =
+    useState("");
 
   return (
     <div className="App">
-     <Header/>
+      <Header savedWordIconToggleClassName={savedWordIconToggleClassName} />
       <Routes>
         <Route
           path="/"
           element={
-            <Home setIsLoading={setIsLoading} setWordList={setWordList} wordList={wordList} isLoading={isLoading} />
+            // Includes form and results components
+            <Home
+              setApiIsLoading={setApiIsLoading}
+              setWordResultList={setWordResultList}
+              wordResultList={wordResultList}
+              apiIsLoading={apiIsLoading}
+              setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+            />
           }
         />
-        <Route path="/savedWords" element={<SavedWords />} />
+        <Route
+          path="/savedWords"
+          element={
+            <SavedWords
+              setWordResultList={setWordResultList}
+              setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+            />
+          }
+        />
+        {/* route for incorrect URL */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    <Footer />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;

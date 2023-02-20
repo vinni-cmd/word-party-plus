@@ -1,16 +1,28 @@
+// components
 import Form from "./Form";
-import Results from "./Results";
 import Loader from "./Loader";
+import Results from "./Results";
 
-const Home = ({ wordList, isLoading, setIsLoading, setWordList }) => {
+const Home = ({
+  wordResultList,
+  apiIsLoading,
+  setApiIsLoading,
+  setWordResultList,
+  setSavedWordIconToggleClassName,
+}) => {
   return (
     <>
-      <Form setWordList={setWordList} setIsLoading={setIsLoading} />
-      <Loader isLoading={isLoading} />
-      {
-        (wordList.length === 0) ? null :
-        <Results wordList={wordList} />
-      }
+      <Form
+        setWordResultList={setWordResultList}
+        setApiIsLoading={setApiIsLoading}
+      />
+      <Loader apiIsLoading={apiIsLoading} />
+      {wordResultList.length === 0 ? null : (
+        <Results
+          wordResultList={wordResultList}
+          setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+        />
+      )}
     </>
   );
 };

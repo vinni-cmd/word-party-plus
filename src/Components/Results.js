@@ -1,20 +1,27 @@
-import firebase from "./../modules/firebase";
+// modules
 import { getDatabase, push, ref, get } from "firebase/database";
 import { IoMdAddCircle } from "react-icons/io";
 import { useEffect, useRef } from "react";
+import uuid from "react-uuid";
+// local imports
+import firebase from "./../modules/firebase";
 import throwAlert from "../modules/alerts";
 
-const Results = ({ wordList }) => {
+const Results = ({ wordResultList, setSavedWordIconToggleClassName }) => {
+  // variable to implement scroll effect when results component is mounted
   const scrollToRef = useRef(null);
+
   useEffect(() => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [wordList]);
+  }, [wordResultList]);
 
   const handleClick = (e) => {
-    const wordToAdd = wordList[e.currentTarget.id].word;
+    // adding words to saved list database
+    const wordToAdd = e.currentTarget.dataset.value;
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
+    // get to check whether or not word is already in database and add if its not
     get(dbRef)
       .then((snapshot) => {
         const wordDataBase = snapshot.val();
@@ -33,21 +40,29 @@ const Results = ({ wordList }) => {
       .catch((error) => {
         throwAlert(error.message);
       });
+
+    setSavedWordIconToggleClassName("animate");
+
+    // enables animation to happen multiple times
+    setTimeout(() => {
+      setSavedWordIconToggleClassName("");
+    }, 600);
   };
 
   return (
     <section className="results wrapper" ref={scrollToRef}>
       <h2>Results</h2>
       <ul>
-        {wordList.map((wordReturn) => {
+        {wordResultList.map((wordReturn) => {
+          const uid = uuid();
           return (
-            <li key={wordList.indexOf(wordReturn)}>
+            <li key={uid}>
               <p>{wordReturn.word}</p>
               <button
                 onClick={handleClick}
-                id={wordList.indexOf(wordReturn)}
                 aria-label="Add word to Saved Words"
                 title="Save word"
+                data-value={wordReturn.word}
               >
                 <IoMdAddCircle />
               </button>
@@ -57,6 +72,6 @@ const Results = ({ wordList }) => {
       </ul>
     </section>
   );
-}
+};
 
 export default Results;

@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+![word party logo](./src/assets/favicon.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Word Party
+Client Brief
 
-## Available Scripts
+Project description
+The client is writing their first poetry collection but unfortunately has run into some snags when it comes to inspiration! They would like an app to help them expand their vocabulary and assist with creating rhymes.
 
-In the project directory, you can run:
+Requirements
+Uses the Datamuse API (https://www.datamuse.com/api/) and Firebase.
+Users can enter a word and then select what functionality they would like performed on that word, either: find rhymes for that word, or find words similar to it.
+The app will then call the Datamuse API to perform the specified search.
+The results will be displayed in a visually pleasing manner.
+The user will be presented with the ability to search again with a new word.
+Users can create an ‘in progress poem’ in firebase where they can save their words.
+Users should also be able to view these word collections.
+Proper error handling. For example:
+If a user types in a query that yields no result - they should be provided feedback (e.g. there were no results found).
+Common error responses should be handled.
+API loading states.
 
-### `npm start`
+Stretch goals
+Explore the Datamuse API and see if it has other functionality that could assist the client with poetry writing.
+Allow users to edit and/or remove words from their collections.
+Create authenticated users so that users can save their collections of words away from the public eye.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Deliverables
+Project files up on GitHub.
+Project up on Netlify.
+All requirements completed BEFORE any stretch goals have been attempted.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Style Guide
+Style guide colours and fonts are primarily recommendations to help your group. If you wish to change these features all you need to do is ask your client :).
 
-### `npm test`
+Colour Palette:
+#78CAD2
+#23395B
+#EAE5E9
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Typography
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Headings: Josefin Sans (semibold)
+Heading Text
+Body font: Lato (light)
