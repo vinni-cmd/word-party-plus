@@ -97,6 +97,7 @@ body {
 
 h1,
 h2,
+h3,
 footer {
   font-family: var(--heading-ff);
 }
@@ -240,6 +241,7 @@ select {
   width: 20ch;
   margin-left: auto;
   accent-color: var(--accent-c);
+  height: 4rem;
 }
 
 input {
@@ -253,6 +255,7 @@ input::placeholder{
 form button {
   padding-inline: 2em;
   margin-left: auto;
+  height: 4rem;
 }
 
 /* Loader */
@@ -270,6 +273,14 @@ form button {
 }
 
 /* Results */
+.results h3::first-letter {
+  text-transform: uppercase;
+}
+
+h3 {
+  padding: auto;
+}
+
 .results,
 .saved-words {
   padding: var(--section-padding);
@@ -387,15 +398,8 @@ footer {
   .not-found-links{
     flex-direction: column;
   }
-  form input {
-    height: 4rem;
-  }
   form button {
     width: 100%;
-    height: 4rem;
-  }
-  select {
-    height: 4rem;
   }
 }
 
