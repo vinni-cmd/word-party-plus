@@ -11,6 +11,9 @@ import "./App.css";
 import Form from "./Components/Form";
 import Loader from "./Components/Loader";
 import Results from "./Components/Results";
+import SignIn from "./Components/SignIn";
+import SignUp from "./Components/SignUp";
+import ResetPassword from "./Components/ResetPassword";
 
 const App = () => {
   // wordResultList is populated with searched word results from api
@@ -28,28 +31,29 @@ const App = () => {
     <div className="App">
       <Header savedWordAnimation={savedWordAnimation} />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Form
+        <Route path="/" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
+        <Route path="/account" element={
+          <>
+            <Form
+              searchWord={searchWord}
+              setSearchWord={setSearchWord}
+              setWordResultList={setWordResultList}
+              setApiIsLoading={setApiIsLoading}
+              setCurrentCategoryName={setCurrentCategoryName}
+            />
+            <Loader apiIsLoading={apiIsLoading} />
+            {wordResultList.length === 0 ? null : (
+              <Results
                 searchWord={searchWord}
-                setSearchWord={setSearchWord}
-                setWordResultList={setWordResultList}
-                setApiIsLoading={setApiIsLoading}
-                setCurrentCategoryName={setCurrentCategoryName}
+                currentCategoryName={currentCategoryName}
+                wordResultList={wordResultList}
+                setSavedWordAnimation={setSavedWordAnimation}
               />
-              <Loader apiIsLoading={apiIsLoading} />
-              {wordResultList.length === 0 ? null : (
-                <Results
-                  searchWord={searchWord}
-                  currentCategoryName={currentCategoryName}
-                  wordResultList={wordResultList}
-                  setSavedWordAnimation={setSavedWordAnimation}
-                />
-              )}
-            </>
-          }
+            )}
+          </>
+        }
         />
         <Route
           path="/savedWords"
