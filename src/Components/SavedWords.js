@@ -5,7 +5,7 @@ import { IoMdRemoveCircle } from "react-icons/io";
 // local imports
 import firebase from "../modules/firebase";
 
-const SavedWords = ({ setWordResultList, setSavedWordIconToggleClassName }) => {
+const SavedWords = ({ setWordResultList, setSavedWordAnimation }) => {
   // variable used to store words from firebase database
   const [savedWords, setSavedWords] = useState([]);
 
@@ -37,10 +37,10 @@ const SavedWords = ({ setWordResultList, setSavedWordIconToggleClassName }) => {
     const dbRef = ref(database, `${wordId}`);
     remove(dbRef);
 
-    setSavedWordIconToggleClassName("animateRemove");
+    setSavedWordAnimation("animateRemove");
 
     setTimeout(() => {
-      setSavedWordIconToggleClassName("");
+      setSavedWordAnimation("");
     }, 600);
   };
 

@@ -18,7 +18,7 @@ const App = () => {
   // while api call is happening word party logo spins
   const [apiIsLoading, setApiIsLoading] = useState(false);
   // state for adding/removing animation for adding/removing saved words
-  const [savedWordIconToggleClassName, setSavedWordIconToggleClassName] =
+  const [savedWordAnimation, setSavedWordAnimation] =
     useState("");
   // user input
   const [searchWord, setSearchWord] = useState("");
@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header savedWordIconToggleClassName={savedWordIconToggleClassName} />
+      <Header savedWordAnimation={savedWordAnimation} />
       <Routes>
         <Route
           path="/"
@@ -45,7 +45,7 @@ const App = () => {
                   searchWord={searchWord}
                   currentCategoryName={currentCategoryName}
                   wordResultList={wordResultList}
-                  setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+                  setSavedWordAnimation={setSavedWordAnimation}
                 />
               )}
             </>
@@ -56,7 +56,7 @@ const App = () => {
           element={
             <SavedWords
               setWordResultList={setWordResultList}
-              setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+              setSavedWordAnimation={setSavedWordAnimation}
             />
           }
         />

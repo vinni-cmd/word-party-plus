@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
 import { useRef } from "react";
 
-const Header = ({ savedWordIconToggleClassName }) => {
+const Header = ({ savedWordAnimation }) => {
   // causes page to scroll to top of home page
   const scrollToRef = useRef(null);
 
@@ -28,7 +28,7 @@ const Header = ({ savedWordIconToggleClassName }) => {
               to="/savedWords"
               aria-label="Navigate to Word Party Saved Words page"
               title="Saved Words"
-              className={savedWordIconToggleClassName}
+              className={savedWordAnimation}
             >
               <AiFillFileWord />
             </Link>

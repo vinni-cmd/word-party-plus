@@ -9,7 +9,7 @@ import throwAlert from "../modules/alerts";
 
 const Results = ({
   wordResultList,
-  setSavedWordIconToggleClassName,
+  setSavedWordAnimation,
   searchWord,
   currentCategoryName,
 }) => {
@@ -46,11 +46,11 @@ const Results = ({
         throwAlert(error.message);
       });
 
-    setSavedWordIconToggleClassName("animate");
+    setSavedWordAnimation("animate");
 
     // enables animation to happen multiple times
     setTimeout(() => {
-      setSavedWordIconToggleClassName("");
+      setSavedWordAnimation("");
     }, 600);
   };
 
