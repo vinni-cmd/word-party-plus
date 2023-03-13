@@ -4,11 +4,13 @@ import { Route, Routes } from "react-router-dom";
 // components
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
-import Home from "./Components/Home";
 import NotFound from "./Components/NotFound";
 import SavedWords from "./Components/SavedWords";
 // local imports
 import "./App.css";
+import Form from "./Components/Form";
+import Loader from "./Components/Loader";
+import Results from "./Components/Results";
 
 const App = () => {
   // wordResultList is populated with searched word results from api
@@ -18,6 +20,9 @@ const App = () => {
   // state for adding/removing animation for adding/removing saved words
   const [savedWordIconToggleClassName, setSavedWordIconToggleClassName] =
     useState("");
+  // user input
+  const [searchWord, setSearchWord] = useState("");
+  const [currentCategoryName, setCurrentCategoryName] = useState("");
 
   return (
     <div className="App">
@@ -26,14 +31,24 @@ const App = () => {
         <Route
           path="/"
           element={
-            // Includes form and results components
-            <Home
-              setApiIsLoading={setApiIsLoading}
-              setWordResultList={setWordResultList}
-              wordResultList={wordResultList}
-              apiIsLoading={apiIsLoading}
-              setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
-            />
+            <>
+              <Form
+                searchWord={searchWord}
+                setSearchWord={setSearchWord}
+                setWordResultList={setWordResultList}
+                setApiIsLoading={setApiIsLoading}
+                setCurrentCategoryName={setCurrentCategoryName}
+              />
+              <Loader apiIsLoading={apiIsLoading} />
+              {wordResultList.length === 0 ? null : (
+                <Results
+                  searchWord={searchWord}
+                  currentCategoryName={currentCategoryName}
+                  wordResultList={wordResultList}
+                  setSavedWordIconToggleClassName={setSavedWordIconToggleClassName}
+                />
+              )}
+            </>
           }
         />
         <Route
