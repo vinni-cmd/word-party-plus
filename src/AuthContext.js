@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,6 +12,8 @@ const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -21,13 +23,35 @@ export const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  const logout = () => {
+  const logOut = () => {
     return signOut(auth)
   }
 
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email)
+  }
+
+  const authenticateUser = () => {
+    // Detects if user is already logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid)
+        setUserEmail(user.email);
+        setLoggedIn(true);
+      } else {
+        setUserId(null)
+        setUserEmail(null);
+      }
+    })
+  }
+
+  useEffect(() => {
+    authenticateUser();
+  }, [loggedIn])
+
   return (
     <UserContext.Provider value={{
-      createUser, logout, signIn, loggedIn, setLoggedIn
+      createUser, logOut, signIn, loggedIn, setLoggedIn, userEmail, resetPassword
     }}>
       {children}
     </UserContext.Provider>
