@@ -1,18 +1,15 @@
 // modules
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai"
 // local imports
 import throwAlert from "../modules/alerts";
-import { auth } from "../modules/firebase";
-import { UserAuth } from "../AuthContext"
+import { UserAuth } from '../AuthContext';
 
-const SignUp = ({ setLoggedIn }) => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const { createUser } = useContext(second)
+  const { createUser, setLoggedIn } = UserAuth();
 
   const navigate = useNavigate();
 
@@ -23,7 +20,7 @@ const SignUp = ({ setLoggedIn }) => {
         // console.log(useCredentials)
         // console.log(useCredentials.user.uid);
         setLoggedIn(true)
-        navigate("/");
+        navigate('/account');
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
