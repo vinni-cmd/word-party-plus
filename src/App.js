@@ -16,6 +16,7 @@ import SignUp from "./Components/SignUp";
 import ResetPassword from "./Components/ResetPassword";
 import { AuthContextProvider } from "./AuthContext";
 import SignOut from "./Components/SignOut";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 const App = () => {
   // wordResultList is populated with searched word results from api
@@ -31,14 +32,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header savedWordAnimation={savedWordAnimation} />
       <AuthContextProvider>
+        <Header savedWordAnimation={savedWordAnimation} />
         <Routes>
           <Route path="/" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signUp" element={<SignUp />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/account" element={
-            <>
+            <ProtectedRoute>
               <SignOut />
               <Form
                 searchWord={searchWord}
@@ -56,16 +57,19 @@ const App = () => {
                   setSavedWordAnimation={setSavedWordAnimation}
                 />
               )}
-            </>
+            </ProtectedRoute>
           }
           />
           <Route
             path="/savedWords"
             element={
-              <SavedWords
-                setWordResultList={setWordResultList}
-                setSavedWordAnimation={setSavedWordAnimation}
-              />
+              <ProtectedRoute>
+                <SignOut />
+                <SavedWords
+                  setWordResultList={setWordResultList}
+                  setSavedWordAnimation={setSavedWordAnimation}
+                />
+              </ProtectedRoute>
             }
           />
           {/* route for incorrect URL */}

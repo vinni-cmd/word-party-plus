@@ -6,6 +6,7 @@ import uuid from "react-uuid";
 // local imports
 import firebase from "./../modules/firebase";
 import throwAlert from "../modules/alerts";
+import { UserAuth } from '../AuthContext';
 
 const Results = ({
   wordResultList,
@@ -13,6 +14,8 @@ const Results = ({
   searchWord,
   currentCategoryName,
 }) => {
+  const { userId } = UserAuth();
+
   // variable to implement scroll effect when results component is mounted
   const scrollToRef = useRef(null);
 
@@ -24,7 +27,7 @@ const Results = ({
     // adding words to saved list database
     const wordToAdd = e.currentTarget.dataset.value;
     const database = getDatabase(firebase);
-    const dbRef = ref(database);
+    const dbRef = ref(database, `${userId}`);
 
     // get to check whether or not word is already in database and add if its not
     get(dbRef)
