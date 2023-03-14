@@ -55,14 +55,14 @@ const SignIn = () => {
         <button type="submit" onSubmit={handleSubmit} title="Sign In" aria-label="Sign In"><AiOutlineLogin aria-hidden="true" /></button>
       </form>
       <Link
-        to="/SignUp"
+        to="/signUp"
         aria-label="Navigate to Word Party SignUp page"
         title="Sign Up"
       >
         <AiOutlineUserAdd aria-hidden='true' />
       </Link>
       <Link
-        to="/ResetPassword"
+        to="/resetPassword"
         aria-label="Navigate to Word Party Reset Password page"
         title="Reset your password"
       >

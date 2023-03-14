@@ -1,13 +1,12 @@
 // modules
 import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 // local imports
 import { UserAuth } from '../AuthContext';
 
 
 const Header = ({ savedWordAnimation }) => {
-  const [homeDestination, setHomeDestination] = useState('/')
   // context
   const { loggedIn } = UserAuth();
 
