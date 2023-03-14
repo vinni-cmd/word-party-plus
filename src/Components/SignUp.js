@@ -17,8 +17,6 @@ const SignUp = () => {
     e.preventDefault();
     createUser(email, password)
       .then(() => {
-        // console.log(useCredentials)
-        // console.log(useCredentials.user.uid);
         setLoggedIn(true)
         navigate('/account');
       })
