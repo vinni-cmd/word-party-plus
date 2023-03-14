@@ -1,25 +1,25 @@
 // modules
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai"
 import { RiLockPasswordLine } from 'react-icons/ri'
 // local imports
-import { auth } from '../modules/firebase'
 import throwAlert from "../modules/alerts";
+import { UserAuth } from '../AuthContext';
 
-const SignIn = ({ setLoggedIn }) => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { signIn, setLoggedIn } = UserAuth();
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+    signIn(email, password)
       .then(() => {
         setLoggedIn(true);
-        navigate("/");
+        navigate("/account");
       })
       .catch((error) => {
         if (error.code === 'auth/user-not-found') {
