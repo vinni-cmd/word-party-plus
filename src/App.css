@@ -198,12 +198,14 @@ header a {
   padding-bottom: 0;
 }
 
+.word-search,
 .sign-in,
 .sign-up,
 .reset-password {
   padding: var(--section-padding);
 }
 
+.word-search form,
 .sign-in form,
 .sign-up form,
 .reset-password form {
@@ -213,15 +215,19 @@ header a {
   gap: 2rem;
 }
 
+.word-search input,
+.word-search select,
 .sign-in input,
 .sign-up input,
 .reset-password input,
+.word-search button,
 .sign-in button,
 .sign-up button,
 .reset-password button {
   margin-inline: auto;
 }
 
+.word-search button,
 .sign-in button,
 .sign-up button,
 .reset-password button {

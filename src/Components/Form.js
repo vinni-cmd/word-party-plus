@@ -1,5 +1,6 @@
 // modules
 import { useState } from "react";
+import { GiPartyPopper } from "react-icons/gi"
 // local imports
 import throwAlert from "../modules/alerts";
 import apiCall from "../modules/api";
@@ -42,62 +43,58 @@ const Form = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="wrapper">
-      <div className="inputs-container">
-        <div className="input-unit">
-          <label htmlFor="searchWord">Word: </label>
-          <input
-            id="searchWord"
-            type="text"
-            placeholder="Enter Word"
-            required
-            onChange={handleSearchWordChange}
-            value={searchWord}
-          />
-        </div>
-        <div className="input-unit">
-          <label>Category: </label>
-          <select
-            value={currentCategory}
-            onChange={handleCategoryChange}
-            required
-          >
-            {/* datamuse api category options */}
-            <option disabled value="">
-              Please Select
-            </option>
-            <option value="jjb" required>
-              Adjectives
-            </option>
-            <option value="ant" required>
-              Antonyms
-            </option>
-            <option value="cns" required>
-              Consonant Match
-            </option>
-            <option value="hom" required>
-              Homophones
-            </option>
-            <option value="nry" required>
-              Near Rhymes
-            </option>
-            <option value="jja" required>
-              Nouns
-            </option>
-            <option value="rhy" required>
-              Rhymes
-            </option>
-            <option value="syn" required>
-              Synonyms
-            </option>
-            <option value="trg" required>
-              Triggers
-            </option>
-          </select>
-        </div>
-        <button onSubmit={handleSubmit}>Submit</button>
-      </div>
-    </form>
+    <div className="word-search wrapper">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="searchWord">Word: </label>
+        <input
+          id="searchWord"
+          type="text"
+          placeholder="Enter Word"
+          required
+          onChange={handleSearchWordChange}
+          value={searchWord}
+        />
+        <label>Category: </label>
+        <select
+          value={currentCategory}
+          onChange={handleCategoryChange}
+          required
+        >
+          {/* datamuse api category options */}
+          <option disabled value="">
+            Please Select
+          </option>
+          <option value="jjb" required>
+            Adjectives
+          </option>
+          <option value="ant" required>
+            Antonyms
+          </option>
+          <option value="cns" required>
+            Consonant Match
+          </option>
+          <option value="hom" required>
+            Homophones
+          </option>
+          <option value="nry" required>
+            Near Rhymes
+          </option>
+          <option value="jja" required>
+            Nouns
+          </option>
+          <option value="rhy" required>
+            Rhymes
+          </option>
+          <option value="syn" required>
+            Synonyms
+          </option>
+          <option value="trg" required>
+            Triggers
+          </option>
+        </select>
+        <button onSubmit={handleSubmit} title="Submit search" aria-label="Submit search"><GiPartyPopper aria-hidden="true" /></button>
+      </form>
+    </div>
   );
 };
 
