@@ -1,17 +1,17 @@
 // modules
-import { signOut } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLogout } from "react-icons/ai"
 // local imports
-import { auth } from '../modules/firebase'
 import throwAlert from '../modules/alerts';
+import { UserAuth } from '../AuthContext';
 
-const SignOut = ({ userEmail, setLoggedIn }) => {
+const SignOut = () => {
+  const { logOut, setLoggedIn, userEmail } = UserAuth();
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    signOut(auth)
+    logOut()
       .then(() => {
         setLoggedIn(false)
         navigate("/");

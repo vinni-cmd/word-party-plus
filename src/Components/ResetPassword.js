@@ -1,22 +1,22 @@
 // modules
-import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { AiOutlineLogin } from 'react-icons/ai'
 // local imports
-import { auth } from '../modules/firebase'
 import throwAlert from "../modules/alerts";
+import { UserAuth } from '../AuthContext';
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('');
   const [resetRequested, setResetRequested] = useState(false)
+  const { resetPassword } = UserAuth();
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendPasswordResetEmail(auth, email)
+    resetPassword(email)
       .then(() => {
         setResetRequested(true);
         setTimeout(() => {

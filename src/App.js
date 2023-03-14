@@ -15,6 +15,7 @@ import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import ResetPassword from "./Components/ResetPassword";
 import { AuthContextProvider } from "./AuthContext";
+import SignOut from "./Components/SignOut";
 
 const App = () => {
   // wordResultList is populated with searched word results from api
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/account" element={
             <>
+              <SignOut />
               <Form
                 searchWord={searchWord}
                 setSearchWord={setSearchWord}
