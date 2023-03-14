@@ -172,11 +172,81 @@ header a {
   font-family: var(--heading-ff);
 }
 
-/*Navigation */
+/* User Auth*/
+.log-out {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.log-out p {
+  margin: 0;
+  margin-right: 1rem;
+  font-size: 1.4rem;
+  display: inline;
+  font-family: var(--heading-ff);
+  font-weight: bold;
+}
+
+.log-out button {
+  color: var(--secondary-c);
+  background-color: var(--primary-c);
+  scale: 0.7;
+  padding-bottom: 0;
+}
+
+.sign-in,
+.sign-up,
+.reset-password {
+  padding: var(--section-padding);
+}
+
+.sign-in form,
+.sign-up form,
+.reset-password form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 2rem;
+}
+
+.sign-in input,
+.sign-up input,
+.reset-password input,
+.sign-in button,
+.sign-up button,
+.reset-password button {
+  margin-inline: auto;
+}
+
+.sign-in button,
+.sign-up button,
+.reset-password button {
+  /* margin-inline: auto; */
+  width: 20ch;
+  background-color: #23395B;
+  color: #78CAD2;
+}
+
+.sign-in a,
+.sign-up a,
+.reset-password a {
+  display: inline-block;
+}
+
+.reset-password p {
+  text-align: center;
+  font-weight: bold;
+}
+
+/*Navigation and some user auth */
 nav {
   position: fixed;
   z-index: 10;
-  top: 3px;
+  top: 20px;
   right: 3px;
 }
 
@@ -191,7 +261,10 @@ nav a {
   display: flex;
 }
 
-nav a {
+nav a,
+.sign-in a,
+.sign-up a,
+.reset-password a {
   font-size: clamp(3rem, 5vw + 1rem, 5rem);
   color: var(--primary-c);
   background-color: transparent;
@@ -201,7 +274,13 @@ nav a {
 } 
 
 nav a:hover,
-nav a:focus {
+nav a:focus,
+.sign-in a:hover,
+.sign-in a:focus,
+.sign-up a:hover,
+.sign-up a:focus,
+.reset-password a:hover,
+.reset-password a:focus {
   color: var(--accent-c);
   scale: 1.2;
 }
@@ -239,9 +318,10 @@ label {
 input,
 select {
   width: 20ch;
+  height: 4rem;
   margin-left: auto;
   accent-color: var(--accent-c);
-  height: 4rem;
+  text-align: center;
 }
 
 input {
@@ -253,6 +333,7 @@ input::placeholder{
 }
 
 form button {
+  height: 4rem;
   padding-inline: 2em;
   margin-left: auto;
   height: 4rem;
@@ -285,6 +366,10 @@ h3 {
 .saved-words {
   padding: var(--section-padding);
   margin-bottom: 100px;
+}
+
+.results h3::first-letter {
+  text-transform: uppercase;
 }
 
 .results ul,
@@ -424,5 +509,4 @@ footer {
     scale: 1;
   }
 }
-
 
