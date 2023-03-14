@@ -13,7 +13,7 @@ const Header = ({ savedWordAnimation }) => {
         <ul>
           <li>
             <Link
-              to="/"
+              to="/account"
               aria-label="Navigate to Word Party Home page"
               title="Home"
               onClick={() =>
