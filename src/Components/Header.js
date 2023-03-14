@@ -1,7 +1,7 @@
 // modules
 import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 // local imports
 import { UserAuth } from '../AuthContext';
 
