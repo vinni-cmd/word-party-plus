@@ -8,7 +8,8 @@ import { UserAuth } from '../AuthContext';
 
 
 
-const SavedWords = ({ setWordResultList, setSavedWordAnimation }) => {
+const SavedWords = ({ setSavedWordAnimation }) => {
+
   // variable used to store words from firebase database
   const [savedWords, setSavedWords] = useState([]);
   // context
@@ -31,11 +32,7 @@ const SavedWords = ({ setWordResultList, setSavedWordAnimation }) => {
       }
       setSavedWords(savedWordArray);
     });
-    return () => {
-      // when component unmounts clear the results component
-      setWordResultList([]);
-    };
-  }, [setWordResultList, userId]);
+  }, [userId]);
 
   const handleRemoveWord = (wordId) => {
     const database = getDatabase(firebase);
