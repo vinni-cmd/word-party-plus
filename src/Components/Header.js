@@ -2,8 +2,14 @@
 import { Link } from "react-router-dom";
 import { AiFillFileWord, AiFillHome } from "react-icons/ai";
 import { useRef } from "react";
+// local imports
+import { UserAuth } from '../AuthContext';
 
-const Header = ({ savedWordIconToggleClassName }) => {
+
+const Header = ({ savedWordAnimation }) => {
+  // context
+  const { loggedIn } = UserAuth();
+
   // causes page to scroll to top of home page
   const scrollToRef = useRef(null);
 
@@ -13,7 +19,7 @@ const Header = ({ savedWordIconToggleClassName }) => {
         <ul>
           <li>
             <Link
-              to="/"
+              to={loggedIn ? '/account' : '/'}
               aria-label="Navigate to Word Party Home page"
               title="Home"
               onClick={() =>
@@ -23,16 +29,20 @@ const Header = ({ savedWordIconToggleClassName }) => {
               <AiFillHome />
             </Link>
           </li>
-          <li>
-            <Link
-              to="/savedWords"
-              aria-label="Navigate to Word Party Saved Words page"
-              title="Saved Words"
-              className={savedWordIconToggleClassName}
-            >
-              <AiFillFileWord />
-            </Link>
-          </li>
+          {
+            !loggedIn ?
+              null :
+              <li>
+                <Link
+                  to="/savedWords"
+                  aria-label="Navigate to Word Party Saved Words page"
+                  title="Saved Words"
+                  className={savedWordAnimation}
+                >
+                  <AiFillFileWord aria-hidden="true" />
+                </Link>
+              </li>
+          }
         </ul>
       </nav>
       <h1>Word Party</h1>
@@ -40,15 +50,19 @@ const Header = ({ savedWordIconToggleClassName }) => {
         Step 1: Enter a word and select a category to expand your vocabulary
       </p>
       <p>
-        Step 2: Add or remove words from your{" "}
-        <Link
-          to="/savedWords"
-          aria-label="Navigate to Word Party Saved Words page"
-          title="Saved Words"
-        >
-          Saved Words
-        </Link>{" "}
-        list
+        Step 2: View your results and save words that inspire
+      </p>
+      <p>
+        Step 3: View your {
+          !loggedIn ? 'Saved Words' :
+            <Link
+              to="/savedWords"
+              aria-label="Navigate to Word Party Saved Words page"
+              title="Saved Words"
+            >
+              Saved Words
+            </Link>
+        } and optionally remove some saved words
       </p>
     </header>
   );

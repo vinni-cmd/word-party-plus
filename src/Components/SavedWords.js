@@ -4,15 +4,21 @@ import { useEffect, useState } from "react";
 import { IoMdRemoveCircle } from "react-icons/io";
 // local imports
 import firebase from "../modules/firebase";
+import { UserAuth } from '../AuthContext';
 
-const SavedWords = ({ setWordResultList, setSavedWordIconToggleClassName }) => {
+
+
+const SavedWords = ({ setSavedWordAnimation }) => {
+
   // variable used to store words from firebase database
   const [savedWords, setSavedWords] = useState([]);
+  // context
+  const { userId } = UserAuth();
 
   // fetches the database saved words by unique id for each word
   useEffect(() => {
     const database = getDatabase(firebase);
-    const dbRef = ref(database);
+    const dbRef = ref(database, `${userId}`);
 
     // listens for changes in database
     onValue(dbRef, (response) => {
@@ -26,21 +32,17 @@ const SavedWords = ({ setWordResultList, setSavedWordIconToggleClassName }) => {
       }
       setSavedWords(savedWordArray);
     });
-    return () => {
-      // when component unmounts clear the results component
-      setWordResultList([]);
-    };
-  }, [setWordResultList]);
+  }, [userId]);
 
   const handleRemoveWord = (wordId) => {
     const database = getDatabase(firebase);
-    const dbRef = ref(database, `${wordId}`);
+    const dbRef = ref(database, `${userId}/${wordId}`);
     remove(dbRef);
 
-    setSavedWordIconToggleClassName("animateRemove");
+    setSavedWordAnimation("animateRemove");
 
     setTimeout(() => {
-      setSavedWordIconToggleClassName("");
+      setSavedWordAnimation("");
     }, 600);
   };
 
