@@ -5,7 +5,7 @@ import { AiOutlineLogout } from "react-icons/ai"
 import throwAlert from '../modules/alerts';
 import { UserAuth } from '../AuthContext';
 
-const SignOut = () => {
+const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
   const { logOut, setLoggedIn, userEmail } = UserAuth();
 
   const navigate = useNavigate();
@@ -13,7 +13,10 @@ const SignOut = () => {
   const handleClick = () => {
     logOut()
       .then(() => {
-        setLoggedIn(false)
+        setSearchWord("");
+        setCurrentCategory("");
+        setWordResultList([]);
+        setLoggedIn(false);
         navigate("/");
       })
       .catch((error) => {

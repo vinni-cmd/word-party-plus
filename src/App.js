@@ -28,6 +28,7 @@ const App = () => {
     useState("");
   // user input
   const [searchWord, setSearchWord] = useState("");
+  const [currentCategory, setCurrentCategory] = useState("");
   const [currentCategoryName, setCurrentCategoryName] = useState("");
 
   return (
@@ -40,9 +41,13 @@ const App = () => {
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/account" element={
             <ProtectedRoute>
-              <SignOut />
+              <SignOut
+                setSearchWord={setSearchWord}
+                setCurrentCategory={setCurrentCategory}
+                setWordResultList={setWordResultList} />
               <Form
                 searchWord={searchWord}
+                currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}
                 setSearchWord={setSearchWord}
                 setWordResultList={setWordResultList}
                 setApiIsLoading={setApiIsLoading}
@@ -65,9 +70,7 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <SignOut />
-                <SavedWords
-                  setWordResultList={setWordResultList}
-                  setSavedWordAnimation={setSavedWordAnimation}
+                <SavedWords setSavedWordAnimation={setSavedWordAnimation}
                 />
               </ProtectedRoute>
             }
