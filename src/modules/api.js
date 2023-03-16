@@ -29,14 +29,22 @@ const apiCall = (
   })
     .then((response) => {
       setApiIsLoading(false);
-      if (!response.data.length) {
+      console.log(response);
+      if (response.data.length) {
+        setWordResultList(response.data);
+      }
+      else if (response.status === 200 && !response.data.length) {
         throw new Error(
           "No results found! Please try another category or word!"
         );
+      } else {
+        throw new Error(
+          `${response.statusText}. We are experiencing some technical difficulties. Please try again later.`
+        );
       }
-      setWordResultList(response.data);
     })
     .catch((errorMessage) => {
+      setApiIsLoading(false);
       throwAlert(errorMessage.message);
     });
 };
