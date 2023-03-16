@@ -50,7 +50,10 @@ const Header = ({ savedWordAnimation }) => {
         Step 1: Enter a word and select a category to expand your vocabulary
       </p>
       <p>
-        Step 2: Add or remove words from your {
+        Step 2: View your results and save words that inspire
+      </p>
+      <p>
+        Step 3: View your {
           !loggedIn ? 'Saved Words' :
             <Link
               to="/savedWords"
@@ -59,7 +62,7 @@ const Header = ({ savedWordAnimation }) => {
             >
               Saved Words
             </Link>
-        }
+        } and optionally remove some saved words
       </p>
     </header>
   );
