@@ -53,7 +53,7 @@ const Header = ({ savedWordAnimation }) => {
         Step 2: View your results and save words that inspire
       </p>
       <p>
-        Step 3: View your {
+        Step 3: Visit your {
           !loggedIn ? 'Saved Words' :
             <Link
               to="/savedWords"
@@ -62,7 +62,7 @@ const Header = ({ savedWordAnimation }) => {
             >
               Saved Words
             </Link>
-        } and optionally remove some saved words
+        } and optionally remove words
       </p>
     </header>
   );
