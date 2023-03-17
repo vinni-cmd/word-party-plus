@@ -11,11 +11,11 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    setSearchWord("");
+    setCurrentCategory("");
+    setWordResultList([]);
     logOut()
       .then(() => {
-        setSearchWord("");
-        setCurrentCategory("");
-        setWordResultList([]);
         setLoggedIn(false);
         navigate("/");
       })
