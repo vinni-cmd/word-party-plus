@@ -27,7 +27,7 @@ const Results = ({
     // adding words to saved list database
     const wordToAdd = e.currentTarget.dataset.value;
     const database = getDatabase(firebase);
-    const dbRef = ref(database, `${userId}`);
+    const dbRef = ref(database, `${sessionStorage.getItem('userID')}`);
 
     // get to check whether or not word is already in database and add if its not
     get(dbRef)
