@@ -7,6 +7,7 @@ import {
   onAuthStateChanged
 } from 'firebase/auth';
 import { auth } from './modules/firebase'
+import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -31,23 +32,22 @@ export const AuthContextProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email)
   }
 
-  const authenticateUser = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
     // Detects if user is already logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUserId(user.uid)
+        setUserId(user.uid);
         setUserEmail(user.email);
         setLoggedIn(true);
+        navigate('/account');
       } else {
         setUserId(null)
         setUserEmail(null);
       }
-    })
-  }
-
-  useEffect(() => {
-    authenticateUser();
-  }, [loggedIn])
+    });
+  }, [loggedIn, navigate])
 
   return (
     <UserContext.Provider value={{
