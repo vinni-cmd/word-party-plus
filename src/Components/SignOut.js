@@ -4,16 +4,14 @@ import { AiOutlineLogout } from "react-icons/ai"
 // local imports
 import throwAlert from '../modules/alerts';
 import { UserAuth } from '../AuthContext';
+import { useEffect } from "react";
 
 const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
-  const { logOut, setLoggedIn, userEmail } = UserAuth();
+  const { logOut, setLoggedIn } = UserAuth();
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setSearchWord("");
-    setCurrentCategory("");
-    setWordResultList([]);
     logOut()
       .then(() => {
         setLoggedIn(false);
@@ -24,9 +22,17 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
       });
   }
 
+  useEffect(() => {
+    return () => {
+      setSearchWord("");
+      setCurrentCategory("");
+      setWordResultList([]);
+    }
+  }, [])
+
   return (
     <div className='log-out wrapper'>
-      <p>Signed In as {userEmail}</p>
+      <p>Signed In as {sessionStorage.getItem('userEmail')}</p>
       <button onClick={handleClick} title="Log Out" aria-label="Log Out"><AiOutlineLogout aria-hidden="true" /></button>
     </div>
   )
