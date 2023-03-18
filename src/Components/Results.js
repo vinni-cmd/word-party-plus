@@ -6,7 +6,7 @@ import uuid from "react-uuid";
 // local imports
 import firebase from "./../modules/firebase";
 import throwAlert from "../modules/alerts";
-import { UserAuth } from '../AuthContext';
+// import { UserAuth } from '../AuthContext';
 
 const Results = ({
   wordResultList,
