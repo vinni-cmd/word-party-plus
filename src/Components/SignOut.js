@@ -28,7 +28,7 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
       setCurrentCategory("");
       setWordResultList([]);
     }
-  }, [])
+  }, [setCurrentCategory, setSearchWord, setWordResultList])
 
   return (
     <div className='log-out wrapper'>
