@@ -69,7 +69,10 @@ const App = () => {
             path="/savedWords"
             element={
               <ProtectedRoute>
-                <SignOut />
+                <SignOut
+                  setSearchWord={setSearchWord}
+                  setCurrentCategory={setCurrentCategory}
+                  setWordResultList={setWordResultList} />
                 <SavedWords setSavedWordAnimation={setSavedWordAnimation}
                 />
               </ProtectedRoute>
