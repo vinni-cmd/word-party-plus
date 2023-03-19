@@ -11,6 +11,7 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    debugger;
     logOut()
       .then(() => {
         setSearchWord("");
