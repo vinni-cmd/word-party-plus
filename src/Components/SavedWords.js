@@ -18,7 +18,7 @@ const SavedWords = ({ setSavedWordAnimation }) => {
   // fetches the database saved words by unique id for each word
   useEffect(() => {
     const database = getDatabase(firebase);
-    const dbRef = ref(database, `${sessionStorage.getItem('userID')}`);
+    const dbRef = ref(database, `${localStorage.getItem('userID')}`);
 
     // listens for changes in database
     onValue(dbRef, (response) => {
@@ -36,7 +36,7 @@ const SavedWords = ({ setSavedWordAnimation }) => {
 
   const handleRemoveWord = (wordId) => {
     const database = getDatabase(firebase);
-    const dbRef = ref(database, `${sessionStorage.getItem('userID')}/${wordId}`);
+    const dbRef = ref(database, `${localStorage.getItem('userID')}/${wordId}`);
     remove(dbRef);
 
     setSavedWordAnimation("animateRemove");

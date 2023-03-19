@@ -17,7 +17,7 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
         setSearchWord("");
         setCurrentCategory("");
         setWordResultList([]);
-        sessionStorage.clear();
+        localStorage.clear();
         setLoggedIn(false);
         navigate("/");
       })
@@ -29,7 +29,7 @@ const SignOut = ({ setSearchWord, setCurrentCategory, setWordResultList }) => {
 
   return (
     <div className='log-out wrapper'>
-      <p>Signed In as {sessionStorage.getItem('userEmail')}</p>
+      <p>Signed In as {localStorage.getItem('userEmail')}</p>
       <button onClick={handleClick} title="Log Out" aria-label="Log Out"><AiOutlineLogout aria-hidden="true" /></button>
     </div>
   )
