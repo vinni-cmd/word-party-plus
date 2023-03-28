@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,6 +14,8 @@ const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(null);
+
+  const navigate = useNavigate();
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -31,14 +35,31 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
-      sessionStorage.setItem('userID', user?.uid);
-      sessionStorage.setItem('userEmail', user?.email);
+      // sessionStorage.setItem('userID', user?.uid);
+      if (user) {
+        setLoggedIn(sessionStorage.getItem('userID'))
+        sessionStorage.setItem('userID', user?.uid);
+        sessionStorage.setItem('userEmail', user?.email);
+      } else {
+        sessionStorage.clear();
+        // setLoggedIn(null);
+        navigate("/");
+      }
+      unsubscribe();
     })
     return () => {
       unsubscribe();
     }
-  }, [])
+  }, [loggedIn, navigate])
 
+  useEffect(() => {
+    if (sessionStorage.getItem('userID')) {
+      setLoggedIn(sessionStorage.getItem('userID'))
+    } else {
+      sessionStorage.clear();
+      setLoggedIn(null);
+    }
+  }, [])
 
 
   return (
