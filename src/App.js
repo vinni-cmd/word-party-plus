@@ -17,6 +17,7 @@ import ResetPassword from "./Components/ResetPassword";
 import { AuthContextProvider } from "./AuthContext";
 import SignOut from "./Components/SignOut";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import ProtectedRoute2 from "./Components/ProtectedRoute2";
 
 const App = () => {
   // wordResultList is populated with searched word results from api
@@ -36,7 +37,11 @@ const App = () => {
       <AuthContextProvider>
         <Header savedWordAnimation={savedWordAnimation} />
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/" element={
+            <ProtectedRoute2>
+              <SignIn />
+            </ProtectedRoute2>
+          } />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/account" element={
