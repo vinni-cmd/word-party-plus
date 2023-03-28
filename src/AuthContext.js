@@ -50,7 +50,7 @@ export const AuthContextProvider = ({ children }) => {
     return () => {
       unsubscribe();
     }
-  }, [loggedIn])
+  }, [loggedIn, navigate])
 
   useEffect(() => {
     if (sessionStorage.getItem('userID')) {
