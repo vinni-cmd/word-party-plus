@@ -14,8 +14,6 @@ const Results = ({
   searchWord,
   currentCategoryName,
 }) => {
-  // const { userId } = UserAuth();
-
   // variable to implement scroll effect when results component is mounted
   const scrollToRef = useRef(null);
 
