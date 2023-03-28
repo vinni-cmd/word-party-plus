@@ -2,4 +2,4 @@
 
 Word Party
 
-https://wordparty.netlify.app/
+https://wordpartyplus.netlify.app/
